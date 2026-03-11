@@ -1,29 +1,35 @@
-/* Custom overrides for LITBOH */
+/* 
+ * Custom overrides for LITBOH
+ * 
+ * This stylesheet tweaks the hero header height and positioning so the horse
+ * remains visible on both desktop and mobile while occupying less vertical
+ * space. Below the header a subtle, animated landscape scene is layered
+ * behind the content to add atmosphere without overpowering the page.
+ */
+
 header {
-  /* Keep the hero horse head visible while reducing header height. */
+  /* Use the same hero image with a slightly higher focus on the head */
   background-image:
-    linear-gradient(rgba(14, 26, 36, 0.35), rgba(14, 26, 36, 0.6)),
+    linear-gradient(rgba(14, 26, 36, 0.35), rgba(14, 26, 36, 0.7)),
     url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
-  /* Position the background a bit higher to showcase the horse's head */
-  background-position: center 20%;
+  background-position: center 15%;
   background-size: cover;
-  /* Reduce padding further to shrink vertical height while keeping text centered */
-  padding: 3rem 1rem;
-  /* Default height fallback: further reduce header height */
-  height: var(--header-height, 35vh);
-  min-height: 200px;
+  padding: 2.5rem 1rem;
+  /* Smaller header height for desktop */
+  height: var(--header-height, 30vh);
+  min-height: 180px;
 }
 
 @media (max-width: 768px) {
   header {
-    /* Further smaller header on mobile devices */
-    height: 30vh;
+    /* Further reduce height on mobile and adjust positioning */
+    height: 25vh;
     background-position: center 20%;
     padding: 2rem 1rem;
   }
 }
 
-/* Scenic animated background below header */
+/* Ensure the page body can host the animated landscape */
 body {
   position: relative;
   overflow-x: hidden;
@@ -32,22 +38,26 @@ body {
 body::before {
   content: '';
   position: fixed;
-  top: var(--header-height, 35vh);
+  /* Start just below the hero header */
+  top: var(--header-height, 30vh);
   left: 0;
   width: 100%;
-  height: calc(100% - var(--header-height, 35vh));
-  /* Use an abstract moving gradient rather than a static image for a subtle weather effect */
-  background-image: none;
-  background: linear-gradient(120deg, rgba(20,40,30,0.15) 0%, rgba(60,80,50,0.15) 25%, rgba(80,100,70,0.15) 50%, rgba(60,80,50,0.15) 75%, rgba(20,40,30,0.15) 100%);
-  background-size: 400% 400%;
-  animation: moveGradient 30s linear infinite;
+  height: calc(100% - var(--header-height, 30vh));
+  /* Apply a scenic landscape as the base of the atmospheric animation */
+  background-image: url('landscape.png');
+  background-size: cover;
+  background-position: center;
+  /* Reduce the impact of the image and unify it with the dark theme */
+  opacity: 0.15;
+  filter: brightness(0.5) contrast(1.2) saturate(0.9) blur(2px);
+  /* Animate the landscape gently from left to right to evoke a breeze */
+  animation: moveLandscape 45s linear infinite;
   pointer-events: none;
   z-index: -1;
 }
 
-/* Animate the abstract gradient to create a gentle moving weather effect */
-@keyframes moveGradient {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes moveLandscape {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-10%); }
+  100% { transform: translateX(0); }
 }
