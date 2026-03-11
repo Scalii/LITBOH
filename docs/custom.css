@@ -1,63 +1,123 @@
-/* 
- * Custom overrides for LITBOH
- * 
- * This stylesheet tweaks the hero header height and positioning so the horse
- * remains visible on both desktop and mobile while occupying less vertical
- * space. Below the header a subtle, animated dark-forest scene is layered
- * behind the content to add atmosphere without overpowering the page.
- */
+/* ===== GLOBAL BACKGROUND ===== */
 
-header {
-  /* Hero image with focus on the head; adjust position to reveal the horse */
-  background-image:
-    linear-gradient(rgba(14, 26, 36, 0.35), rgba(14, 26, 36, 0.7)),
-    url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
-      /* Shift the image down so more of the horse's head is visible */
-      background-position: center 40%;
-      background-size: cover;
-      padding: 2rem 1rem;
-      /* Reduce the header height for a less dominant hero section */
-      height: var(--header-height, 28vh);
-      min-height: 160px;
-}
-
-@media (max-width: 768px) {
-      header {
-        /* Further reduce height on mobile and show more of the horse */
-        height: 22vh;
-        background-position: center 50%;
-        padding: 1.5rem 1rem;
-      }
-}
-
-/* Body wrapper for the animated background */
 body {
-  position: relative;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  color: white;
+  background: #0b1a23;
   overflow-x: hidden;
 }
 
+/* Smooth forest continuation */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
-  top: var(--header-height, 30vh);
-  left: 0;
-  width: 100%;
-  height: calc(100% - var(--header-height, 30vh));
-  /* Use the same dark forest image as the hero but blur and darken it. */
-  background-image: url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+  inset: 0;
+  z-index: -2;
+
+  background-image: url("assets/header.jpg");
   background-size: cover;
-  background-position: center;
-      /* Increase opacity slightly to make the forest atmosphere more noticeable */
-      opacity: 0.18;
-      filter: brightness(0.4) saturate(0.9) blur(3px);
-      /* Move the background a bit faster to make the atmospheric motion perceptible */
-      animation: moveForest 50s linear infinite;
-  pointer-events: none;
-  z-index: -1;
+  background-position: center top;
+
+  filter: blur(6px) brightness(0.35);
+  transform: scale(1.2);
 }
 
-@keyframes moveForest {
-  0% { transform: translateX(0); }
-  50% { transform: translateX(-10%); }
-  100% { transform: translateX(0); }
+/* Particles / stars */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255,255,255,0.25), transparent),
+    radial-gradient(2px 2px at 70% 60%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.25), transparent);
+
+  animation: starsMove 60s linear infinite;
+}
+
+@keyframes starsMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-400px); }
+}
+
+/* ===== HEADER ===== */
+
+.hero {
+  height: 55vh;
+  min-height: 420px;
+
+  background-image: url("assets/header.jpg");
+  background-size: cover;
+  background-position: center 25%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(10,20,30,0.4),
+    rgba(10,20,30,0.85)
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  letter-spacing: 3px;
+}
+
+.hero p {
+  opacity: 0.8;
+}
+
+/* ===== CONTENT ===== */
+
+.section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+.card {
+  background: rgba(10,25,35,0.85);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+/* Buttons */
+
+button,
+.btn {
+  background: #2fa36b;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover,
+.btn:hover {
+  background: #38c17c;
 }
