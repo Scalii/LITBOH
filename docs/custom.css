@@ -7,19 +7,19 @@ header {
   /* Position the background a bit higher to showcase the horse's head */
   background-position: center 20%;
   background-size: cover;
-  /* Reduce padding to shrink vertical height while keeping text centered */
-  padding: 4rem 1rem;
-  /* Default height fallback: reduce header height */
-  height: var(--header-height, 40vh);
-  min-height: 250px;
+  /* Reduce padding further to shrink vertical height while keeping text centered */
+  padding: 3rem 1rem;
+  /* Default height fallback: further reduce header height */
+  height: var(--header-height, 35vh);
+  min-height: 200px;
 }
 
 @media (max-width: 768px) {
   header {
-    /* Slightly smaller header on mobile devices */
-    height: 35vh;
-    background-position: center 25%;
-    padding: 3rem 1rem;
+    /* Further smaller header on mobile devices */
+    height: 30vh;
+    background-position: center 20%;
+    padding: 2rem 1rem;
   }
 }
 
@@ -32,19 +32,22 @@ body {
 body::before {
   content: '';
   position: fixed;
-  top: var(--header-height, 40vh);
+  top: var(--header-height, 35vh);
   left: 0;
   width: 100%;
-  height: calc(100% - var(--header-height, 40vh));
-  background-image: url('landscape.png');
-  background-size: cover;
-  background-position: center center;
-  animation: moveLandscape 40s linear infinite alternate;
+  height: calc(100% - var(--header-height, 35vh));
+  /* Use an abstract moving gradient rather than a static image for a subtle weather effect */
+  background-image: none;
+  background: linear-gradient(120deg, rgba(20,40,30,0.15) 0%, rgba(60,80,50,0.15) 25%, rgba(80,100,70,0.15) 50%, rgba(60,80,50,0.15) 75%, rgba(20,40,30,0.15) 100%);
+  background-size: 400% 400%;
+  animation: moveGradient 30s linear infinite;
   pointer-events: none;
   z-index: -1;
 }
 
-@keyframes moveLandscape {
-  from { transform: scale(1) translateX(0); }
-  to { transform: scale(1.1) translateX(-3%); }
+/* Animate the abstract gradient to create a gentle moving weather effect */
+@keyframes moveGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
