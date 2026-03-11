@@ -1,9 +1,21 @@
 /* =====================================
-   LITBOH – custom.css (fireflies edition)
+   LITBOH – custom.css (starry night edition)
    ===================================== */
 
+/*
+  This stylesheet builds on the original "fireflies" theme but refines the
+  visual style to better match a mystical night‑time atmosphere. The page
+  background is slightly darker, and the animated particles have been tinted
+  to pale whites and golds so they evoke twinkling stars instead of bright
+  blue fireflies. These updates are applied globally and should require no
+  changes to your HTML. Simply replace the existing custom.css with this
+  version and commit the change to see the updated look across all pages.
+*/
+
+/* Root variables */
 :root {
-  --page-bg: #07131d;
+  /* Darker page background reminiscent of a night sky */
+  --page-bg: #040d1f;
   --surface: rgba(8, 23, 35, 0.78);
   --surface-border: rgba(255, 255, 255, 0.05);
   --header-height: 38vh;
@@ -26,7 +38,8 @@ header {
   height: var(--header-height);
   overflow: hidden;
   background-image:
-    linear-gradient(to bottom, rgba(6, 16, 24, 0.20), rgba(6, 16, 24, 0.68)),
+    /* Preserve the subtle forest texture but soften it with a darker overlay */
+    linear-gradient(to bottom, rgba(6, 16, 24, 0.40), rgba(6, 16, 24, 0.90)),
     url("46186d34-40a3-486b-9bfc-bcadb65a34c5.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -41,7 +54,7 @@ header {
   background-position: center 18%;
 }
 
-/* Wald-Fortsetzung */
+/* Continuation of the forest into the page background */
 body::before {
   content: "";
   position: fixed;
@@ -63,7 +76,7 @@ body::before {
   filter: blur(10px) brightness(0.34) saturate(0.95);
 }
 
-/* Fireflies Layer 1 */
+/* Primary star layer */
 body::after {
   content: "";
   position: fixed;
@@ -71,28 +84,29 @@ body::after {
   z-index: -2;
   pointer-events: none;
   opacity: 0.65;
+  /* Star layer – pale white and gold stars at random positions */
   background-image:
-    radial-gradient(circle at 9% 18%, rgba(101, 212, 255, 0.95) 0 2px, transparent 5px),
-    radial-gradient(circle at 18% 42%, rgba(132, 224, 255, 0.90) 0 2.5px, transparent 6px),
-    radial-gradient(circle at 27% 24%, rgba(78, 185, 255, 0.95) 0 1.8px, transparent 5px),
-    radial-gradient(circle at 36% 49%, rgba(149, 231, 255, 0.95) 0 2.8px, transparent 7px),
-    radial-gradient(circle at 48% 20%, rgba(100, 201, 255, 0.90) 0 2px, transparent 5px),
-    radial-gradient(circle at 57% 36%, rgba(135, 226, 255, 0.92) 0 2.6px, transparent 6px),
-    radial-gradient(circle at 67% 18%, rgba(90, 196, 255, 0.92) 0 2px, transparent 5px),
-    radial-gradient(circle at 75% 46%, rgba(162, 235, 255, 0.95) 0 2.9px, transparent 7px),
-    radial-gradient(circle at 84% 22%, rgba(100, 201, 255, 0.90) 0 2.1px, transparent 5px),
-    radial-gradient(circle at 93% 39%, rgba(156, 232, 255, 0.95) 0 2.8px, transparent 7px),
-    radial-gradient(circle at 13% 72%, rgba(92, 194, 255, 0.90) 0 2px, transparent 5px),
-    radial-gradient(circle at 32% 79%, rgba(139, 228, 255, 0.92) 0 2.5px, transparent 6px),
-    radial-gradient(circle at 53% 67%, rgba(106, 207, 255, 0.92) 0 2px, transparent 5px),
-    radial-gradient(circle at 73% 76%, rgba(151, 233, 255, 0.95) 0 2.8px, transparent 7px),
-    radial-gradient(circle at 90% 70%, rgba(98, 198, 255, 0.92) 0 2px, transparent 5px);
-  filter: blur(0.2px) drop-shadow(0 0 8px rgba(116, 214, 255, 0.35));
+    radial-gradient(circle at 9% 18%, rgba(255,255,255,0.95) 0 2px, transparent 5px),
+    radial-gradient(circle at 18% 42%, rgba(255,245,220,0.90) 0 2.5px, transparent 6px),
+    radial-gradient(circle at 27% 24%, rgba(255,250,240,0.92) 0 1.8px, transparent 5px),
+    radial-gradient(circle at 36% 49%, rgba(255,248,235,0.94) 0 2.8px, transparent 7px),
+    radial-gradient(circle at 48% 20%, rgba(255,255,255,0.90) 0 2px, transparent 5px),
+    radial-gradient(circle at 57% 36%, rgba(255,245,220,0.92) 0 2.6px, transparent 6px),
+    radial-gradient(circle at 67% 18%, rgba(255,250,240,0.92) 0 2px, transparent 5px),
+    radial-gradient(circle at 75% 46%, rgba(255,248,235,0.94) 0 2.9px, transparent 7px),
+    radial-gradient(circle at 84% 22%, rgba(255,255,255,0.90) 0 2.1px, transparent 5px),
+    radial-gradient(circle at 93% 39%, rgba(255,248,235,0.94) 0 2.8px, transparent 7px),
+    radial-gradient(circle at 13% 72%, rgba(255,250,240,0.90) 0 2px, transparent 5px),
+    radial-gradient(circle at 32% 79%, rgba(255,245,220,0.92) 0 2.5px, transparent 6px),
+    radial-gradient(circle at 53% 67%, rgba(255,250,240,0.92) 0 2px, transparent 5px),
+    radial-gradient(circle at 73% 76%, rgba(255,248,235,0.94) 0 2.8px, transparent 7px),
+    radial-gradient(circle at 90% 70%, rgba(255,255,255,0.90) 0 2px, transparent 5px);
+  filter: blur(0.2px) drop-shadow(0 0 8px rgba(255, 255, 255, 0.35));
   animation: firefliesFloat 10s ease-in-out infinite alternate,
              firefliesBlink 4.8s ease-in-out infinite;
 }
 
-/* zweiter Layer für mehr Tiefe */
+/* Secondary star layer for depth – small faint stars */
 html::after {
   content: "";
   position: fixed;
@@ -101,18 +115,18 @@ html::after {
   pointer-events: none;
   opacity: 0.35;
   background-image:
-    radial-gradient(circle at 14% 28%, rgba(130, 224, 255, 0.95) 0 1.6px, transparent 4px),
-    radial-gradient(circle at 25% 58%, rgba(92, 198, 255, 0.90) 0 1.5px, transparent 4px),
-    radial-gradient(circle at 41% 30%, rgba(151, 235, 255, 0.92) 0 1.8px, transparent 4.5px),
-    radial-gradient(circle at 62% 52%, rgba(98, 201, 255, 0.90) 0 1.6px, transparent 4px),
-    radial-gradient(circle at 79% 33%, rgba(148, 232, 255, 0.94) 0 1.8px, transparent 4.5px),
-    radial-gradient(circle at 88% 62%, rgba(96, 199, 255, 0.90) 0 1.6px, transparent 4px);
-  filter: blur(0.4px) drop-shadow(0 0 6px rgba(114, 214, 255, 0.28));
+    radial-gradient(circle at 14% 28%, rgba(255,255,255,0.85) 0 1.6px, transparent 4px),
+    radial-gradient(circle at 25% 58%, rgba(255,245,220,0.80) 0 1.5px, transparent 4px),
+    radial-gradient(circle at 41% 30%, rgba(255,250,240,0.82) 0 1.8px, transparent 4.5px),
+    radial-gradient(circle at 62% 52%, rgba(255,248,235,0.80) 0 1.6px, transparent 4px),
+    radial-gradient(circle at 79% 33%, rgba(255,245,220,0.84) 0 1.8px, transparent 4.5px),
+    radial-gradient(circle at 88% 62%, rgba(255,255,255,0.80) 0 1.6px, transparent 4px);
+  filter: blur(0.4px) drop-shadow(0 0 6px rgba(255, 255, 255, 0.28));
   animation: firefliesFloatSlow 14s ease-in-out infinite alternate,
              firefliesBlinkSlow 6s ease-in-out infinite;
 }
 
-/* leichter Nebelschimmer */
+/* Light fog / mist highlights to soften the content area */
 main::before,
 .section::before {
   content: "";
@@ -121,13 +135,13 @@ main::before,
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(100, 190, 255, 0.05), transparent 30%),
-    radial-gradient(circle at 80% 35%, rgba(120, 210, 255, 0.04), transparent 28%),
-    radial-gradient(circle at 55% 75%, rgba(90, 170, 255, 0.04), transparent 32%);
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05), transparent 30%),
+    radial-gradient(circle at 80% 35%, rgba(255, 255, 255, 0.04), transparent 28%),
+    radial-gradient(circle at 55% 75%, rgba(255, 255, 255, 0.04), transparent 32%);
   filter: blur(18px);
 }
 
-/* Content lesbar halten */
+/* Keep content readable */
 main,
 .section,
 .card,
@@ -157,7 +171,7 @@ main {
   padding-top: 18px;
 }
 
-/* Animationen */
+/* Animation keyframes – unchanged from original for gentle floating and blinking */
 @keyframes firefliesBlink {
   0%, 100% {
     opacity: 0.30;
@@ -215,7 +229,7 @@ main {
   }
 }
 
-/* Mobile */
+/* Responsive adjustments mirror the original theme */
 @media (max-width: 900px) {
   :root {
     --header-height: 33vh;
