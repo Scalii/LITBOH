@@ -1,36 +1,35 @@
 /* =====================================
-   LITBOH – custom.css (starry night edition v2)
+   LITBOH – custom.css (starry night edition v3)
    ===================================== */
 
 /*
-  This stylesheet refines the previous "starry night" theme to ensure key
-  visual elements remain visible while maintaining a moody night‑time ambience.
-  The overlay on the header is now lighter so the horse in the background
-  image is clearly visible. The forest texture behind the content has also
-  been brightened slightly, and the star layers have increased opacity and
-  a stronger drop shadow to make them stand out against the darker sky.
-  Responsive rules have been adjusted accordingly. Replace your existing
-  custom.css with this file and commit the change to see the improved
-  visuals on your GitHub Pages site.
+  Third iteration of the starry night theme.
+  Goals:
+   - Make the header background image (horse & moon) fully visible on all pages.
+   - Allow the mystical forest texture to show through more clearly by reducing
+     overly dark overlays and increasing brightness.
+   - Intensify the starry night effect so stars are obvious across the dark
+     sections of each page.
+   - Maintain readability of content cards via subtle surface blur and borders.
 */
 
 /* Root variables */
 :root {
-  /* Dark page background reminiscent of a night sky */
-  --page-bg: #040d1f;
-  --surface: rgba(8, 23, 35, 0.78);
-  --surface-border: rgba(255, 255, 255, 0.05);
-  --header-height: 38vh;
-  --header-min-height: 260px;
+  --page-bg: #05162a;               /* slightly lighter than previous dark blue */
+  --surface: rgba(10, 24, 40, 0.82);
+  --surface-border: rgba(255, 255, 255, 0.06);
+  --header-height: 42vh;
+  --header-min-height: 280px;
 }
 
-/* Basis */
+/* Base styles */
 html,
 body {
   margin: 0;
   padding: 0;
   background: var(--page-bg);
   overflow-x: hidden;
+  color: #eff6fa;
 }
 
 /* Header */
@@ -39,13 +38,15 @@ header {
   min-height: var(--header-min-height);
   height: var(--header-height);
   overflow: hidden;
-  /* Use a lighter overlay on the hero so the horse is clearly visible */
+  /* Much lighter overlay so the horse & moon scene remains clear */
   background-image:
-    linear-gradient(to bottom, rgba(6, 16, 24, 0.20), rgba(6, 16, 24, 0.65)),
+    /* Lighten the overlay so the horse and moon scene is clear */
+    linear-gradient(to bottom, rgba(6, 16, 24, 0.08), rgba(6, 16, 24, 0.30)),
     url("46186d34-40a3-486b-9bfc-bcadb65a34c5.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center 18%;
+  /* Shift background down a bit to reveal more of the horse */
+  background-position: center 30%;
 }
 
 .hero {
@@ -53,86 +54,82 @@ header {
   height: var(--header-height);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center 18%;
+  background-position: center 30%;
 }
 
-/* Continuation of the forest into the page background */
+/* Forest continuation behind the page */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -3;
   pointer-events: none;
+  /* Use the same forest image as the header for a continuous backdrop.
+     The gradient overlay is very subtle, just to darken the top slightly.
+     Reduced blur and increased brightness reveal the trees and moon clearly */
   background-image:
     linear-gradient(
       to bottom,
-      rgba(4, 12, 20, 0.16) 0%,
-      rgba(4, 12, 20, 0.55) 28%,
-      rgba(4, 12, 20, 0.90) 100%
+      rgba(5, 16, 26, 0.04) 0%,
+      rgba(5, 16, 26, 0.20) 40%,
+      rgba(5, 16, 26, 0.40) 100%
     ),
     url("46186d34-40a3-486b-9bfc-bcadb65a34c5.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center top;
-  transform: scale(1.06);
-  /* Brighten the forest slightly to reveal more detail */
-  filter: blur(10px) brightness(0.50) saturate(0.95);
+  transform: scale(1.02);
+  /* Reduced blur and lighter brightness to make the background texture visible */
+  filter: blur(4px) brightness(0.75) saturate(1.0);
 }
 
-/* Primary star layer */
+/* Primary star layer – large bright stars */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  /* Increased opacity so stars stand out */
-  opacity: 0.80;
+  opacity: 0.95;
   background-image:
-    radial-gradient(circle at 9% 18%, rgba(255,255,255,0.95) 0 2px, transparent 5px),
-    radial-gradient(circle at 18% 42%, rgba(255,245,220,0.90) 0 2.5px, transparent 6px),
-    radial-gradient(circle at 27% 24%, rgba(255,250,240,0.92) 0 1.8px, transparent 5px),
-    radial-gradient(circle at 36% 49%, rgba(255,248,235,0.94) 0 2.8px, transparent 7px),
-    radial-gradient(circle at 48% 20%, rgba(255,255,255,0.90) 0 2px, transparent 5px),
-    radial-gradient(circle at 57% 36%, rgba(255,245,220,0.92) 0 2.6px, transparent 6px),
-    radial-gradient(circle at 67% 18%, rgba(255,250,240,0.92) 0 2px, transparent 5px),
-    radial-gradient(circle at 75% 46%, rgba(255,248,235,0.94) 0 2.9px, transparent 7px),
-    radial-gradient(circle at 84% 22%, rgba(255,255,255,0.90) 0 2.1px, transparent 5px),
-    radial-gradient(circle at 93% 39%, rgba(255,248,235,0.94) 0 2.8px, transparent 7px),
-    radial-gradient(circle at 13% 72%, rgba(255,250,240,0.90) 0 2px, transparent 5px),
-    radial-gradient(circle at 32% 79%, rgba(255,245,220,0.92) 0 2.5px, transparent 6px),
-    radial-gradient(circle at 53% 67%, rgba(255,250,240,0.92) 0 2px, transparent 5px),
-    radial-gradient(circle at 73% 76%, rgba(255,248,235,0.94) 0 2.8px, transparent 7px),
-    radial-gradient(circle at 90% 70%, rgba(255,255,255,0.90) 0 2px, transparent 5px);
-  /* Stronger glow around stars */
-  filter: blur(0.2px) drop-shadow(0 0 10px rgba(255, 255, 255, 0.45));
-  animation: firefliesFloat 10s ease-in-out infinite alternate,
-             firefliesBlink 4.8s ease-in-out infinite;
+    radial-gradient(circle at 10% 15%, rgba(255,255,255,0.95) 0 3px, transparent 6px),
+    radial-gradient(circle at 20% 40%, rgba(255,250,230,0.94) 0 3.5px, transparent 7px),
+    radial-gradient(circle at 30% 25%, rgba(255,245,220,0.94) 0 3px, transparent 6px),
+    radial-gradient(circle at 40% 50%, rgba(255,248,235,0.94) 0 3.6px, transparent 8px),
+    radial-gradient(circle at 52% 22%, rgba(255,255,255,0.94) 0 3px, transparent 6px),
+    radial-gradient(circle at 62% 38%, rgba(255,245,220,0.94) 0 3.3px, transparent 7px),
+    radial-gradient(circle at 72% 18%, rgba(255,250,240,0.94) 0 3px, transparent 6px),
+    radial-gradient(circle at 80% 42%, rgba(255,248,235,0.94) 0 3.7px, transparent 8px),
+    radial-gradient(circle at 89% 20%, rgba(255,255,255,0.94) 0 3.1px, transparent 6px),
+    radial-gradient(circle at 95% 45%, rgba(255,248,235,0.94) 0 3.6px, transparent 8px);
+  /* Stronger drop shadow to make stars glow */
+  filter: blur(0.2px) drop-shadow(0 0 16px rgba(255, 255, 255, 0.60));
+  animation: starsFloat 12s ease-in-out infinite alternate,
+             starsBlink 5s ease-in-out infinite;
 }
 
-/* Secondary star layer for depth – small faint stars */
+/* Secondary star layer – smaller, fainter stars */
 html::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  /* Increased opacity for faint stars */
-  opacity: 0.55;
+  opacity: 0.75;
   background-image:
-    radial-gradient(circle at 14% 28%, rgba(255,255,255,0.85) 0 1.6px, transparent 4px),
-    radial-gradient(circle at 25% 58%, rgba(255,245,220,0.80) 0 1.5px, transparent 4px),
-    radial-gradient(circle at 41% 30%, rgba(255,250,240,0.82) 0 1.8px, transparent 4.5px),
-    radial-gradient(circle at 62% 52%, rgba(255,248,235,0.80) 0 1.6px, transparent 4px),
-    radial-gradient(circle at 79% 33%, rgba(255,245,220,0.84) 0 1.8px, transparent 4.5px),
-    radial-gradient(circle at 88% 62%, rgba(255,255,255,0.80) 0 1.6px, transparent 4px);
-  /* Stronger glow for faint stars */
-  filter: blur(0.4px) drop-shadow(0 0 8px rgba(255, 255, 255, 0.32));
-  animation: firefliesFloatSlow 14s ease-in-out infinite alternate,
-             firefliesBlinkSlow 6s ease-in-out infinite;
+    radial-gradient(circle at 15% 28%, rgba(255,255,255,0.85) 0 2px, transparent 4px),
+    radial-gradient(circle at 27% 60%, rgba(255,250,230,0.80) 0 2px, transparent 5px),
+    radial-gradient(circle at 42% 32%, rgba(255,245,220,0.82) 0 2.2px, transparent 4.8px),
+    radial-gradient(circle at 64% 54%, rgba(255,248,235,0.80) 0 2.0px, transparent 4.5px),
+    radial-gradient(circle at 81% 35%, rgba(255,245,220,0.84) 0 2.1px, transparent 5px),
+    radial-gradient(circle at 90% 64%, rgba(255,255,255,0.80) 0 2.0px, transparent 4.5px);
+  /* Slightly stronger glow for smaller stars */
+  filter: blur(0.4px) drop-shadow(0 0 12px rgba(255, 255, 255, 0.45));
+  animation: starsFloatSlow 16s ease-in-out infinite alternate,
+             starsBlinkSlow 7s ease-in-out infinite;
 }
 
-/* Light fog / mist highlights to soften the content area */
+/* Fog / mist highlights to add depth behind content */
 main::before,
 .section::before {
   content: "";
@@ -141,13 +138,13 @@ main::before,
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05), transparent 30%),
-    radial-gradient(circle at 80% 35%, rgba(255, 255, 255, 0.04), transparent 28%),
-    radial-gradient(circle at 55% 75%, rgba(255, 255, 255, 0.04), transparent 32%);
-  filter: blur(18px);
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.06), transparent 32%),
+    radial-gradient(circle at 80% 35%, rgba(255, 255, 255, 0.05), transparent 30%),
+    radial-gradient(circle at 50% 75%, rgba(255, 255, 255, 0.05), transparent 35%);
+  filter: blur(20px);
 }
 
-/* Keep content readable */
+/* Content surfaces */
 main,
 .section,
 .card,
@@ -168,125 +165,95 @@ details,
 section > div {
   background: var(--surface);
   border: 1px solid var(--surface-border);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.30);
-  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  border-radius: 16px;
 }
 
 main {
-  padding-top: 18px;
+  padding-top: 20px;
 }
 
-/* Animation keyframes – unchanged from original for gentle floating and blinking */
-@keyframes firefliesBlink {
+/* Animations for stars */
+@keyframes starsBlink {
   0%, 100% {
-    opacity: 0.30;
+    opacity: 0.4;
   }
-  25% {
-    opacity: 0.55;
+  30% {
+    opacity: 0.7;
   }
-  50% {
-    opacity: 0.95;
+  60% {
+    opacity: 1;
   }
-  75% {
-    opacity: 0.45;
+  80% {
+    opacity: 0.5;
   }
 }
 
-@keyframes firefliesBlinkSlow {
+@keyframes starsBlinkSlow {
   0%, 100% {
-    opacity: 0.18;
+    opacity: 0.2;
   }
-  40% {
-    opacity: 0.50;
+  35% {
+    opacity: 0.6;
   }
   70% {
-    opacity: 0.28;
+    opacity: 0.3;
   }
 }
 
-@keyframes firefliesFloat {
-  0% {
-    transform: translateY(0) translateX(0);
-  }
-  25% {
-    transform: translateY(-6px) translateX(8px);
-  }
-  50% {
-    transform: translateY(5px) translateX(-6px);
-  }
-  75% {
-    transform: translateY(-4px) translateX(10px);
-  }
-  100% {
-    transform: translateY(3px) translateX(-8px);
-  }
+@keyframes starsFloat {
+  0% { transform: translateY(0) translateX(0); }
+  25% { transform: translateY(-8px) translateX(12px); }
+  50% { transform: translateY(6px) translateX(-10px); }
+  75% { transform: translateY(-5px) translateX(14px); }
+  100% { transform: translateY(4px) translateX(-12px); }
 }
 
-@keyframes firefliesFloatSlow {
-  0% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-8px) translateX(6px);
-  }
-  100% {
-    transform: translateY(4px) translateX(-5px);
-  }
+@keyframes starsFloatSlow {
+  0% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-10px) translateX(8px); }
+  100% { transform: translateY(5px) translateX(-7px); }
 }
 
-/* Responsive adjustments mirror the original theme with brighter backgrounds */
+/* Responsive adjustments */
 @media (max-width: 900px) {
   :root {
-    --header-height: 33vh;
-    --header-min-height: 220px;
+    --header-height: 36vh;
+    --header-min-height: 240px;
   }
-
   header,
   .hero {
-    background-position: center 16%;
+    background-position: center 28%;
   }
-
   body::before {
-    transform: scale(1.08);
-    filter: blur(8px) brightness(0.54) saturate(0.95);
+    transform: scale(1.05);
+    filter: blur(7px) brightness(0.65) saturate(0.98);
   }
-
-  body::after {
-    opacity: 0.60;
-  }
-
-  html::after {
-    opacity: 0.40;
-  }
+  body::after { opacity: 0.80; }
+  html::after { opacity: 0.60; }
 }
 
 @media (max-width: 600px) {
   :root {
-    --header-height: 30vh;
-    --header-min-height: 200px;
+    --header-height: 32vh;
+    --header-min-height: 220px;
   }
-
   header,
   .hero {
-    background-position: center 14%;
+    background-position: center 25%;
   }
-
   body::after {
-    opacity: 0.50;
-    animation-duration: 6.2s, 4.4s;
+    opacity: 0.70;
+    animation-duration: 6s, 4s;
   }
-
-  html::after {
-    opacity: 0.30;
-  }
-
+  html::after { opacity: 0.50; }
   .card,
   article,
   details,
   .timeline-entry,
   .mechanics-nav,
   section > div {
-    backdrop-filter: blur(7px);
+    backdrop-filter: blur(8px);
   }
 }
