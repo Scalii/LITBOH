@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LITBOH – Planung</title>
+  <style>
+    /*
+      Dieses Stylesheet wurde aus der bestehenden Planungsseite abgeleitet und weiterentwickelt.
+      Die Farben und Komponenten knüpfen an die Western‑ und Waldatmosphäre an, wurden jedoch
+      um eine zusätzliche Unternavigation erweitert, damit einzelne Mechaniken schneller erreichbar
+      sind. Der Header wurde so angepasst, dass das Pferd sowohl auf Desktop als auch auf Mobilgeräten
+      besser sichtbar ist (die Hintergrundposition wurde etwas nach oben verschoben).  
+    */
+    :root {
+      --background: #0e1a24;
+      --surface: #152736;
+      --accent: #3fa46a;
+      --text: #f3f3f3;
+      --muted: #8aa2b3;
+      --card-shadow: rgba(0, 0, 0, 0.4);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      /* Mystisches 3D‑Pferd bei Nacht. Position leicht nach oben verschoben, damit der Kopf sichtbar bleibt. */
+      background: linear-gradient(180deg, rgba(5, 23, 34, 0.6), rgba(5, 23, 34, 0.85)),
+                  url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+      background-size: cover;
+      background-position: 50% 30%;
+      padding: 90px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0 0 10px 0;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: 20px;
+      background-color: var(--surface);
+      position: sticky;
+      top: 0;
+      padding: 14px 0;
+      box-shadow: 0 2px 4px var(--card-shadow);
+      z-index: 100;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    nav a:hover {
+      background-color: var(--accent);
+      color: var(--background);
+    }
+
+    .subnav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 0 20px 0;
+    }
+
+    .subnav a {
+      color: var(--accent);
+      text-decoration: none;
+      background-color: var(--surface);
+      padding: 6px 12px;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px var(--card-shadow);
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .subnav a:hover {
+      background-color: var(--accent);
+      color: var(--background);
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      scroll-margin-top: 90px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: var(--accent);
+      font-size: 2rem;
+    }
+
+    .card {
+      background-color: var(--surface);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px var(--card-shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .timeline {
+      position: relative;
+      margin: 40px 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--muted);
+    }
+
+    .timeline-entry {
+      position: relative;
+      padding-left: 70px;
+      margin-bottom: 40px;
+    }
+
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      background-color: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--background);
+    }
+
+    .timeline-entry h4 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .details summary {
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+    }
+
+    .details summary span {
+      margin-left: 6px;
+    }
+
+    .details summary::marker {
+      content: '';
+    }
+
+    .details summary:before {
+      content: '+';
+      color: var(--accent);
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    .details[open] summary:before {
+      content: '−';
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      border-top: 1px solid var(--surface);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 0;
+      }
+      .subnav {
+        flex-direction: column;
+        align-items: center;
+      }
+      .timeline-entry {
+        padding-left: 50px;
+      }
+      .timeline::before {
+        left: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LITBOH</h1>
+    <p>Eine Vision für alle Pferdefreunde – spüre Freiheit, Bindung und Vertrauen in deiner eigenen Western‑Welt. Dieses Dokument fasst alle Ideen und Systeme zusammen.</p>
+  </header>
+  <nav>
+    <a href="index.html">Startseite</a>
+    <a href="#vision">Vision</a>
+    <a href="#mechanics">Mechaniken</a>
+    <a href="#loop">Gameplay‑Loop</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#atmosphere">Atmosphäre</a>
+  </nav>
+
+  <!-- Vision Section -->
+  <section id="vision" class="section">
+    <h2>Vision &amp; Spielgefühl</h2>
+    <div class="card">
+      <p>
+        Unsere Vision mit <strong>LITBOH</strong> ist es, ein Zuhause für Spielerinnen und Spieler zu schaffen, die Pferde lieben
+        und eine tiefe Verbindung zu ihrem virtuellen Tier aufbauen möchten. Dieses Spiel soll sich nach Freiheit anfühlen:
+        Du reitest über weite Wiesen, entdeckst dichte Wälder und erlebst den rauen Charme des Westens. Gleichzeitig
+        steht die Bindung zwischen dir und deinem Herzpferd im Mittelpunkt. Vertrauen entsteht nicht über Nacht –
+        du musst es dir erarbeiten, indem du fair trainierst, gut auf dein Pferd achtest und seine Eigenheiten akzeptierst.
+      </p>
+      <p>
+        <em>Freiheit, Bindung, Vertrauen, Western, Wald – und das Gefühl von Heimat.</em> Diesen Mix wollen wir schaffen.
+        Wir möchten, dass LITBOH sich wie ein Ort anfühlt, zu dem du gerne zurückkehrst, sei es, um einfach
+        einen gemütlichen Ritt durch den Abendnebel zu genießen oder dich im Turnier mit anderen zu messen.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mechanics Section -->
+  <section id="mechanics" class="section">
+    <h2>Spielmechaniken</h2>
+    <!-- Unternavigation für die einzelnen Mechaniken -->
+    <div class="subnav">
+      <a href="#herzpferd">Herzpferd</a>
+      <a href="#trainer-karriere">Trainer‑Karriere</a>
+      <a href="#dynamisches-verhalten">Verhalten &amp; AI</a>
+      <a href="#stall-umgebung">Stall &amp; Umgebung</a>
+      <a href="#offene-welt">Offene Welt</a>
+      <a href="#wettbewerbe">Wettbewerbe</a>
+    </div>
+    <!-- Heart Horse (collapsible) -->
+    <div class="card details" id="herzpferd">
+      <summary><span>Dein Herzpferd</span></summary>
+      <div>
+        <p>
+          Zu Beginn des Spiels gebierst du dein eigenes Fohlen – dein Herzpferd. Du begleitest es von den ersten wackeligen
+          Schritten bis hin zum erfahrenen Champion. Jedes Pferd hat eine individuelle Persönlichkeit und reagiert auf
+          dein Verhalten: Es kann vertrauensvoll, scheu, neugierig oder auch dominant werden. Diese Entwicklung entsteht
+          aus euren gemeinsamen Erfahrungen – kein Durchlauf gleicht dem anderen.
+        </p>
+      </div>
+    </div>
+    <!-- Trainer Career (collapsible) -->
+    <div class="card details" id="trainer-karriere">
+      <summary><span>Trainer‑Karriere</span></summary>
+      <div>
+        <p>
+          Um Geld zu verdienen und dein Wissen zu erweitern, arbeitest du als Pferdetrainer:in. Du nimmst Pferde anderer
+          Besitzer in Beritt, reitest junge Pferde an oder hilfst Problempferden, wieder Vertrauen zu fassen. Mit jedem
+          Auftrag lernst du neue Trainingsmethoden und schaltest hilfreiche Ausrüstung frei. Deine eigene Erfahrung wirkt
+          sich direkt auf dein Herzpferd aus – schließlich wirst du ein immer besserer Trainer.
+        </p>
+      </div>
+    </div>
+    <!-- AI/Behaviour System (collapsible) -->
+    <div class="card details" id="dynamisches-verhalten">
+      <summary><span>Dynamisches Verhalten &amp; AI</span></summary>
+      <div>
+        <p>
+          Pferde lernen durch Konsequenz, Timing und Motivation. Unser System simuliert diese Prinzipien: Vertrauen,
+          Respekt, Angst, Motivation und Stress sind Kennwerte, die ständig angepasst werden. Nutzt du nur Futter als
+          Belohnung, wird dein Pferd ständig nach Leckerlis suchen. Arbeitest du mit zu viel Druck, entwickelt es Angst
+          oder Aggression. Geduld, Fairness und ein guter Stallalltag führen zu einem ausgeglichenen Pferd, das bereit
+          ist, für dich durchs Feuer zu gehen.
+        </p>
+      </div>
+    </div>
+    <!-- Stable & Environment (collapsible) -->
+    <div class="card details" id="stall-umgebung">
+      <summary><span>Stall &amp; Umgebung</span></summary>
+      <div>
+        <p>
+          Ein Pferd braucht mehr als Training: Baue deinen Stall aus, errichte großzügige Weiden, einen Roundpen, einen
+          Dressurplatz oder eine Vielseitigkeitsstrecke. Gestalte Futterstellen und gönn deinem Pferd Rückzugsorte. Ein
+          liebevoll eingerichteter Hof wirkt sich positiv auf Gesundheit, Motivation und Stresslevel aus – und macht
+          deinen Hof zu einem echten Zuhause.
+        </p>
+      </div>
+    </div>
+    <!-- Open World (collapsible) -->
+    <div class="card details" id="offene-welt">
+      <summary><span>Offene Welt &amp; Erkundung</span></summary>
+      <div>
+        <p>
+          Abseits des Trainings wartet eine weitläufige Welt darauf, entdeckt zu werden. Reite durch Wälder, über Felder
+          und in kleine Western‑Städtchen, sammle Ressourcen für den Stallbau, begegne Wildpferden und hilf Dorfbewohnern
+          bei kleinen Aufgaben. Die Welt von LITBOH soll zum Erkunden einladen und immer neue Geschichten erzählen.
+        </p>
+      </div>
+    </div>
+    <!-- Competitions (collapsible) -->
+    <div class="card details" id="wettbewerbe">
+      <summary><span>Wettbewerbe &amp; Turniere</span></summary>
+      <div>
+        <p>
+          Wenn du und dein Herzpferd bereit sind, könnt ihr euch auf Turnieren messen: Dressur, Springen, Vielseitigkeit
+          oder Western‑Disziplinen. Die Leistung hängt von eurer Vorbereitung, dem Vertrauen zwischen euch und dem
+          Stresslevel des Pferdes ab. Gewinne Preisgelder und sammle Ruhm – aber vergiss nie, dass der Weg das Ziel ist.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gameplay Loop -->
+  <section id="loop" class="section">
+    <h2>Gameplay‑Loop</h2>
+    <div class="card">
+      <p>
+        Der Kern von LITBOH folgt einem klaren, aber vielseitigen Loop, der sich ständig entwickelt:
+      </p>
+      <ol>
+        <li><strong>Fohlen erschaffen:</strong> Gestalte dein Herzpferd und begleite es durch die ersten Lebensjahre.</li>
+        <li><strong>Ausbildung &amp; Bonding:</strong> Lerne grundlegende Pflege, Bodenarbeit und erste Trainingsschritte.
+            Baue Vertrauen auf.</li>
+        <li><strong>Trainer‑Aufträge:</strong> Nimm fremde Pferde in Training, verdiene Geld und sammle Erfahrung.</li>
+        <li><strong>Stall ausbauen:</strong> Investiere in Einrichtungen, Weiden und Ausstattung.</li>
+        <li><strong>Gemeinsame Abenteuer:</strong> Erkunde die offene Welt, sammle Ressourcen und genieße freie Ritte.</li>
+        <li><strong>Turniere &amp; Ziele:</strong> Stelle dich Wettbewerben, erreiche Meilensteine und arbeite auf
+            eure gemeinsamen Träume hin.</li>
+        <li><strong>Wachse zusammen:</strong> Mit jeder Herausforderung wächst die Bindung – und mit ihr euer gemeinsames
+            Potenzial.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section id="roadmap" class="section">
+    <h2>Roadmap</h2>
+    <div class="timeline">
+      <div class="timeline-entry">
+        <h4>Konzeptphase</h4>
+        <p>Ideensammlung, Vision definieren, Kernmechaniken festlegen und Feedback von Pferdefans einholen.</p>
+      </div>
+      <div class="timeline-entry">
+        <h4>Prototyp &amp; Fohlenphase</h4>
+        <p>Basisgameplay mit Fohlenaufzucht und einfachem Training implementieren. Erste Tests zum Bonding‑System.</p>
+      </div>
+      <div class="timeline-entry">
+        <h4>AI &amp; Verhalten</h4>
+        <p>Entwicklung des dynamischen Verhaltenssystems: Trust, Fear, Motivation, Stress. Erste Charaktereigenschaften.</p>
+      </div>
+      <div class="timeline-entry">
+        <h4>Weltbau &amp; Stall</h4>
+        <p>Aufbau der offenen Welt, Gestaltung der Western‑Szenerie, Implementierung des Stall‑ und Ausbaufeatures.</p>
+      </div>
+      <div class="timeline-entry">
+        <h4>Trainer‑Karriere &amp; Quests</h4>
+        <p>Einführung von Aufträgen, NPCs und Nebenquests. Wirtschaftssystem und Trainer‑Belohnungen.</p>
+      </div>
+      <div class="timeline-entry">
+        <h4>Wettbewerbe &amp; Polishing</h4>
+        <p>Turniersystem integrieren, Balance anpassen und das Spielerlebnis verfeinern. Feinschliff am UI und UX.</p>
+      </div>
+      <div class="timeline-entry">
+        <h4>Community &amp; Release</h4>
+        <p>Beta‑Tests, Feedback integrieren, finale Anpassungen. Offizieller Release und laufende Unterstützung.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Atmosphere Section -->
+  <section id="atmosphere" class="section">
+    <h2>Atmosphäre &amp; Gefühl</h2>
+    <div class="card">
+      <p>
+        <strong>LITBOH</strong> ist mehr als eine Simulation – es ist ein Gefühl. Abends sitzst du auf der Stallmauer,
+        hörst das Schnauben deines Pferdes und das Zirpen der Grillen. Morgens reitest du durch feuchte Waldpfade,
+        während die Sonne durch die Baumkronen bricht. Western‑Elemente wie Lagerfeuer, rustikale Ställe und Cowboyhüte
+        treffen auf die Wärme eines heimeligen Hofes. Wir wollen, dass du dich geborgen fühlst – und gleichzeitig
+        jederzeit aufbrechen kannst, um die Freiheit zu erleben.
+      </p>
+    </div>
+    <div class="card details">
+      <summary><span>Warum Western &amp; Wald?</span></summary>
+      <div>
+        <p>
+          Der Western‑Stil steht für Abenteuer, Mut und den Freiheitsgedanken der Prärie. Wälder symbolisieren Ruhe,
+          Naturverbundenheit und das Geheimnisvolle. Diese Kombination erzeugt eine Atmosphäre, die sowohl aufregend
+          als auch beruhigend wirkt – perfekt für ein Spiel, das gleichzeitig herausfordernd und tröstlich sein soll.
+        </p>
+      </div>
+    </div>
+    <div class="card details">
+      <summary><span>Heimatgefühl &amp; soziale Aspekte</span></summary>
+      <div>
+        <p>
+          Ein Zuhause ist dort, wo man verstanden wird. Darum soll <strong>LITBOH</strong> auch soziale Elemente bieten:
+          Triff andere Reiter:innen, tauscht euch aus, unterstützt euch gegenseitig und bildet vielleicht sogar einen
+          kleinen Stallverband. Der Hof soll sich wie eine zweite Heimat anfühlen, zu der du immer wieder zurückkehrst.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 LITBOH – Diese Ideensammlung lebt vom Feedback der Community. Danke, dass du Teil dieser Reise bist!</p>
+  </footer>
+</body>
+</html>
