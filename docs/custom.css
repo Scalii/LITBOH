@@ -1,20 +1,22 @@
 /* =====================================
-   LITBOH – custom.css (starry night edition)
+   LITBOH – custom.css (starry night edition v2)
    ===================================== */
 
 /*
-  This stylesheet builds on the original "fireflies" theme but refines the
-  visual style to better match a mystical night‑time atmosphere. The page
-  background is slightly darker, and the animated particles have been tinted
-  to pale whites and golds so they evoke twinkling stars instead of bright
-  blue fireflies. These updates are applied globally and should require no
-  changes to your HTML. Simply replace the existing custom.css with this
-  version and commit the change to see the updated look across all pages.
+  This stylesheet refines the previous "starry night" theme to ensure key
+  visual elements remain visible while maintaining a moody night‑time ambience.
+  The overlay on the header is now lighter so the horse in the background
+  image is clearly visible. The forest texture behind the content has also
+  been brightened slightly, and the star layers have increased opacity and
+  a stronger drop shadow to make them stand out against the darker sky.
+  Responsive rules have been adjusted accordingly. Replace your existing
+  custom.css with this file and commit the change to see the improved
+  visuals on your GitHub Pages site.
 */
 
 /* Root variables */
 :root {
-  /* Darker page background reminiscent of a night sky */
+  /* Dark page background reminiscent of a night sky */
   --page-bg: #040d1f;
   --surface: rgba(8, 23, 35, 0.78);
   --surface-border: rgba(255, 255, 255, 0.05);
@@ -37,9 +39,9 @@ header {
   min-height: var(--header-min-height);
   height: var(--header-height);
   overflow: hidden;
+  /* Use a lighter overlay on the hero so the horse is clearly visible */
   background-image:
-    /* Preserve the subtle forest texture but soften it with a darker overlay */
-    linear-gradient(to bottom, rgba(6, 16, 24, 0.40), rgba(6, 16, 24, 0.90)),
+    linear-gradient(to bottom, rgba(6, 16, 24, 0.20), rgba(6, 16, 24, 0.65)),
     url("46186d34-40a3-486b-9bfc-bcadb65a34c5.png");
   background-size: cover;
   background-repeat: no-repeat;
@@ -73,7 +75,8 @@ body::before {
   background-repeat: no-repeat;
   background-position: center top;
   transform: scale(1.06);
-  filter: blur(10px) brightness(0.34) saturate(0.95);
+  /* Brighten the forest slightly to reveal more detail */
+  filter: blur(10px) brightness(0.50) saturate(0.95);
 }
 
 /* Primary star layer */
@@ -83,8 +86,8 @@ body::after {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  opacity: 0.65;
-  /* Star layer – pale white and gold stars at random positions */
+  /* Increased opacity so stars stand out */
+  opacity: 0.80;
   background-image:
     radial-gradient(circle at 9% 18%, rgba(255,255,255,0.95) 0 2px, transparent 5px),
     radial-gradient(circle at 18% 42%, rgba(255,245,220,0.90) 0 2.5px, transparent 6px),
@@ -101,7 +104,8 @@ body::after {
     radial-gradient(circle at 53% 67%, rgba(255,250,240,0.92) 0 2px, transparent 5px),
     radial-gradient(circle at 73% 76%, rgba(255,248,235,0.94) 0 2.8px, transparent 7px),
     radial-gradient(circle at 90% 70%, rgba(255,255,255,0.90) 0 2px, transparent 5px);
-  filter: blur(0.2px) drop-shadow(0 0 8px rgba(255, 255, 255, 0.35));
+  /* Stronger glow around stars */
+  filter: blur(0.2px) drop-shadow(0 0 10px rgba(255, 255, 255, 0.45));
   animation: firefliesFloat 10s ease-in-out infinite alternate,
              firefliesBlink 4.8s ease-in-out infinite;
 }
@@ -113,7 +117,8 @@ html::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.35;
+  /* Increased opacity for faint stars */
+  opacity: 0.55;
   background-image:
     radial-gradient(circle at 14% 28%, rgba(255,255,255,0.85) 0 1.6px, transparent 4px),
     radial-gradient(circle at 25% 58%, rgba(255,245,220,0.80) 0 1.5px, transparent 4px),
@@ -121,7 +126,8 @@ html::after {
     radial-gradient(circle at 62% 52%, rgba(255,248,235,0.80) 0 1.6px, transparent 4px),
     radial-gradient(circle at 79% 33%, rgba(255,245,220,0.84) 0 1.8px, transparent 4.5px),
     radial-gradient(circle at 88% 62%, rgba(255,255,255,0.80) 0 1.6px, transparent 4px);
-  filter: blur(0.4px) drop-shadow(0 0 6px rgba(255, 255, 255, 0.28));
+  /* Stronger glow for faint stars */
+  filter: blur(0.4px) drop-shadow(0 0 8px rgba(255, 255, 255, 0.32));
   animation: firefliesFloatSlow 14s ease-in-out infinite alternate,
              firefliesBlinkSlow 6s ease-in-out infinite;
 }
@@ -229,7 +235,7 @@ main {
   }
 }
 
-/* Responsive adjustments mirror the original theme */
+/* Responsive adjustments mirror the original theme with brighter backgrounds */
 @media (max-width: 900px) {
   :root {
     --header-height: 33vh;
@@ -243,15 +249,15 @@ main {
 
   body::before {
     transform: scale(1.08);
-    filter: blur(8px) brightness(0.38) saturate(0.95);
+    filter: blur(8px) brightness(0.54) saturate(0.95);
   }
 
   body::after {
-    opacity: 0.48;
+    opacity: 0.60;
   }
 
   html::after {
-    opacity: 0.28;
+    opacity: 0.40;
   }
 }
 
@@ -267,12 +273,12 @@ main {
   }
 
   body::after {
-    opacity: 0.38;
+    opacity: 0.50;
     animation-duration: 6.2s, 4.4s;
   }
 
   html::after {
-    opacity: 0.22;
+    opacity: 0.30;
   }
 
   .card,
