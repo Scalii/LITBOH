@@ -29,8 +29,10 @@
     }
 
     header {
-            /* Hintergund: mystisches 3D‑Pferd bei Nacht. Das Bild wird im Ordner "images" erwartet. */
-      background: linear-gradient(180deg, rgba(5, 23, 34, 0.7), rgba(5, 23, url('images/horse-night.png');
+      /* Hintergrund: mystisches 3D‑Pferd bei Nacht. Das Bild befindet sich im gleichen Verzeichnis wie diese Seite. */
+      background: linear-gradient(180deg, rgba(5, 23, 34, 0.7), rgba(5, 23, 34, 0.9)),
+                  url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+      background-size: cover;
       background-position: center;
       padding: 80px 20px;
       text-align: center;
@@ -53,11 +55,13 @@
     nav {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 32px;
+      margin-bottom: 20px;
       background-color: var(--surface);
       position: sticky;
       top: 0;
-      padding: 10px 0;
+      padding: 14px 0;
       box-shadow: 0 2px 4px var(--card-shadow);
       z-index: 100;
     }
@@ -66,17 +70,22 @@
       color: var(--muted);
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.2s;
+      padding: 6px 14px;
+      border-radius: 4px;
+      transition: background-color 0.2s, color 0.2s;
     }
 
     nav a:hover {
-      color: var(--text);
+      background-color: var(--accent);
+      color: var(--background);
     }
 
     .section {
       padding: 60px 20px;
       max-width: 900px;
       margin: 0 auto;
+      /* sorgt dafür, dass Anker-Links unter der Sticky-Navigation korrekt positioniert sind */
+      scroll-margin-top: 90px;
     }
 
     .section h2 {
@@ -175,11 +184,23 @@
 
     @media (max-width: 600px) {
       header h1 {
+        /* Auf kleineren Bildschirmen die Überschrift leicht verkleinern */
         font-size: 2.2rem;
       }
       nav {
-        flex-wrap: wrap;
-        gap: 10px;
+        /* Navigation auf Mobilgeräten untereinander anordnen */
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 0;
+      }
+      .timeline-entry {
+        /* Weniger Einzug bei der Roadmap auf kleinen Displays */
+        padding-left: 50px;
+      }
+      .timeline::before {
+        /* Die Linie der Roadmap weiter links platzieren */
+        left: 20px;
       }
     }
   </style>
@@ -219,64 +240,76 @@
   <!-- Mechanics Section -->
   <section id="mechanics" class="section">
     <h2>Spielmechaniken</h2>
-    <!-- Heart Horse -->
-    <div class="card">
-      <h3>Dein Herzpferd</h3>
-      <p>
-        Zu Beginn des Spiels gebierst du dein eigenes Fohlen – dein Herzpferd. Du begleitest es von den ersten wackeligen
-        Schritten bis hin zum erfahrenen Champion. Jedes Pferd hat eine individuelle Persönlichkeit und reagiert auf
-        dein Verhalten: Es kann vertrauensvoll, scheu, neugierig oder auch dominant werden. Diese Entwicklung entsteht
-        aus euren gemeinsamen Erfahrungen – kein Durchlauf gleicht dem anderen.
-      </p>
+    <!-- Heart Horse (collapsible) -->
+    <div class="card details">
+      <summary><span>Dein Herzpferd</span></summary>
+      <div>
+        <p>
+          Zu Beginn des Spiels gebierst du dein eigenes Fohlen – dein Herzpferd. Du begleitest es von den ersten wackeligen
+          Schritten bis hin zum erfahrenen Champion. Jedes Pferd hat eine individuelle Persönlichkeit und reagiert auf
+          dein Verhalten: Es kann vertrauensvoll, scheu, neugierig oder auch dominant werden. Diese Entwicklung entsteht
+          aus euren gemeinsamen Erfahrungen – kein Durchlauf gleicht dem anderen.
+        </p>
+      </div>
     </div>
-    <!-- Trainer Career -->
-    <div class="card">
-      <h3>Trainer‑Karriere</h3>
-      <p>
-        Um Geld zu verdienen und dein Wissen zu erweitern, arbeitest du als Pferdetrainer:in. Du nimmst Pferde anderer
-        Besitzer in Beritt, reitest junge Pferde an oder hilfst Problempferden, wieder Vertrauen zu fassen. Mit jedem
-        Auftrag lernst du neue Trainingsmethoden und schaltest hilfreiche Ausrüstung frei. Deine eigene Erfahrung wirkt
-        sich direkt auf dein Herzpferd aus – schließlich wirst du ein immer besserer Trainer.
-      </p>
+    <!-- Trainer Career (collapsible) -->
+    <div class="card details">
+      <summary><span>Trainer‑Karriere</span></summary>
+      <div>
+        <p>
+          Um Geld zu verdienen und dein Wissen zu erweitern, arbeitest du als Pferdetrainer:in. Du nimmst Pferde anderer
+          Besitzer in Beritt, reitest junge Pferde an oder hilfst Problempferden, wieder Vertrauen zu fassen. Mit jedem
+          Auftrag lernst du neue Trainingsmethoden und schaltest hilfreiche Ausrüstung frei. Deine eigene Erfahrung wirkt
+          sich direkt auf dein Herzpferd aus – schließlich wirst du ein immer besserer Trainer.
+        </p>
+      </div>
     </div>
-    <!-- AI/Behaviour System -->
-    <div class="card">
-      <h3>Dynamisches Verhalten &amp; AI</h3>
-      <p>
-        Pferde lernen durch Konsequenz, Timing und Motivation. Unser System simuliert diese Prinzipien: Vertrauen,
-        Respekt, Angst, Motivation und Stress sind Kennwerte, die ständig angepasst werden. Nutzt du nur Futter als
-        Belohnung, wird dein Pferd ständig nach Leckerlis suchen. Arbeitest du mit zu viel Druck, entwickelt es Angst
-        oder Aggression. Geduld, Fairness und ein guter Stallalltag führen zu einem ausgeglichenen Pferd, das bereit
-        ist, für dich durchs Feuer zu gehen.
-      </p>
+    <!-- AI/Behaviour System (collapsible) -->
+    <div class="card details">
+      <summary><span>Dynamisches Verhalten &amp; AI</span></summary>
+      <div>
+        <p>
+          Pferde lernen durch Konsequenz, Timing und Motivation. Unser System simuliert diese Prinzipien: Vertrauen,
+          Respekt, Angst, Motivation und Stress sind Kennwerte, die ständig angepasst werden. Nutzt du nur Futter als
+          Belohnung, wird dein Pferd ständig nach Leckerlis suchen. Arbeitest du mit zu viel Druck, entwickelt es Angst
+          oder Aggression. Geduld, Fairness und ein guter Stallalltag führen zu einem ausgeglichenen Pferd, das bereit
+          ist, für dich durchs Feuer zu gehen.
+        </p>
+      </div>
     </div>
-    <!-- Stable & Environment -->
-    <div class="card">
-      <h3>Stall &amp; Umgebung</h3>
-      <p>
-        Ein Pferd braucht mehr als Training: Baue deinen Stall aus, errichte großzügige Weiden, einen Roundpen, einen
-        Dressurplatz oder eine Vielseitigkeitsstrecke. Gestalte Futterstellen und gönn deinem Pferd Rückzugsorte. Ein
-        liebevoll eingerichteter Hof wirkt sich positiv auf Gesundheit, Motivation und Stresslevel aus – und macht
-        deinen Hof zu einem echten Zuhause.
-      </p>
+    <!-- Stable & Environment (collapsible) -->
+    <div class="card details">
+      <summary><span>Stall &amp; Umgebung</span></summary>
+      <div>
+        <p>
+          Ein Pferd braucht mehr als Training: Baue deinen Stall aus, errichte großzügige Weiden, einen Roundpen, einen
+          Dressurplatz oder eine Vielseitigkeitsstrecke. Gestalte Futterstellen und gönn deinem Pferd Rückzugsorte. Ein
+          liebevoll eingerichteter Hof wirkt sich positiv auf Gesundheit, Motivation und Stresslevel aus – und macht
+          deinen Hof zu einem echten Zuhause.
+        </p>
+      </div>
     </div>
-    <!-- Open World -->
-    <div class="card">
-      <h3>Offene Welt &amp; Erkundung</h3>
-      <p>
-        Abseits des Trainings wartet eine weitläufige Welt darauf, entdeckt zu werden. Reite durch Wälder, über Felder
-        und in kleine Western‑Städtchen, sammle Ressourcen für den Stallbau, begegne Wildpferden und hilf Dorfbewohnern
-        bei kleinen Aufgaben. Die Welt von LITBOH soll zum Erkunden einladen und immer neue Geschichten erzählen.
-      </p>
+    <!-- Open World (collapsible) -->
+    <div class="card details">
+      <summary><span>Offene Welt &amp; Erkundung</span></summary>
+      <div>
+        <p>
+          Abseits des Trainings wartet eine weitläufige Welt darauf, entdeckt zu werden. Reite durch Wälder, über Felder
+          und in kleine Western‑Städtchen, sammle Ressourcen für den Stallbau, begegne Wildpferden und hilf Dorfbewohnern
+          bei kleinen Aufgaben. Die Welt von LITBOH soll zum Erkunden einladen und immer neue Geschichten erzählen.
+        </p>
+      </div>
     </div>
-    <!-- Competitions -->
-    <div class="card">
-      <h3>Wettbewerbe &amp; Turniere</h3>
-      <p>
-        Wenn du und dein Herzpferd bereit sind, könnt ihr euch auf Turnieren messen: Dressur, Springen, Vielseitigkeit
-        oder Western‑Disziplinen. Die Leistung hängt von eurer Vorbereitung, dem Vertrauen zwischen euch und dem
-        Stresslevel des Pferdes ab. Gewinne Preisgelder und sammle Ruhm – aber vergiss nie, dass der Weg das Ziel ist.
-      </p>
+    <!-- Competitions (collapsible) -->
+    <div class="card details">
+      <summary><span>Wettbewerbe &amp; Turniere</span></summary>
+      <div>
+        <p>
+          Wenn du und dein Herzpferd bereit sind, könnt ihr euch auf Turnieren messen: Dressur, Springen, Vielseitigkeit
+          oder Western‑Disziplinen. Die Leistung hängt von eurer Vorbereitung, dem Vertrauen zwischen euch und dem
+          Stresslevel des Pferdes ab. Gewinne Preisgelder und sammle Ruhm – aber vergiss nie, dass der Weg das Ziel ist.
+        </p>
+      </div>
     </div>
   </section>
 
