@@ -1,57 +1,54 @@
 /*
-  LITBOH custom theme – v8 (March 2026)
+  LITBOH custom theme – v10 (March 2026)
 
-  This version refines the night‑forest aesthetic based on user feedback.
-  The original hero artwork (horse galloping under a moon) becomes a
-  full‑page backdrop with improved brightness and contrast so the horse
-  and glowing particles are clearly visible on all pages. The header is
-  simplified but retains subtle texture via a gradient and backdrop
-  blur, creating separation from the content while still blending
-  harmoniously with the background. Star effects are brightened and
-  recoloured to cool whites and pale blues for a neutral glow rather
-  than a yellow tint. All styles are fully responsive and avoid heavy
-  scripts for good performance on mobile devices.
+  This version resolves lingering issues with the site’s background and header.
+  The hero artwork (horse galloping under a moon) now serves as the full‑page
+  backdrop, with increased brightness and saturation so the horse and glowing
+  particles are clearly visible on every page. A soft gradient overlay keeps
+  text legible without obscuring the image. The header itself no longer shows
+  the hero artwork; instead, it uses a simple dark gradient with a subtle
+  blur, creating visual separation without feeling empty. Star effects are
+  intensified and rendered in cool whites and blues to avoid the yellow tint
+  seen in earlier versions. Mobile responsiveness and performance have been
+  carefully considered: all animations are lightweight and there are no
+  external scripts. Use this file to replace docs/custom.css in the
+  repository.
 */
 
 :root {
-  /* Hero artwork used for the full‑page background. It resides in the
-     same folder as this stylesheet, so no additional path is needed. */
+  /* Hero artwork used for the full‑page background (horse and particles).
+     The file sits in the same directory as the stylesheet. */
   --hero-image: url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
 
-  /* Surface styling for cards and UI elements */
-  --card-bg: rgba(6, 16, 24, 0.65);
-  --card-blur: 8px;
-
-  /* Accent colour for interactive elements */
+  /* Base colours */
+  --text-primary: #f5f9ff;
+  --text-secondary: #9bacbf;
   --accent: #26b46c;
+  --accent-hover: #1e8c56;
 
-  /* Typography colours */
-  --text-primary: #f1f7ff;
-  --text-secondary: #99aac3;
+  /* Card styling */
+  --card-bg: rgba(6, 16, 24, 0.6);
+  --card-blur: 10px;
 
-  /* Star colours (cool whites and blues) */
-  --star1: rgba(255, 255, 255, 0.9);
-  --star2: rgba(220, 235, 255, 0.8);
-  --star3: rgba(180, 210, 255, 0.6);
-  --star4: rgba(150, 185, 245, 0.4);
+  /* Star colours – cool whites and blues */
+  --star1: rgba(255, 255, 255, 0.95);
+  --star2: rgba(220, 235, 255, 0.85);
+  --star3: rgba(180, 210, 255, 0.7);
+  --star4: rgba(140, 190, 245, 0.5);
 }
 
-/* Reset margins and set base typography */
-html,
-body {
+/* Reset base styles */
+html, body {
   margin: 0;
   padding: 0;
-  color: var(--text-primary);
   font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text-primary);
   background: transparent;
   position: relative;
   min-height: 100%;
 }
 
-/* Full‑page background: display the hero artwork across the viewport.
-   Brightness and saturation are increased slightly so the horse and
-   particles remain visible even under the dark overlay. A light blur
-   softens the texture without obscuring details. */
+/* Full‑page background: show the hero image clearly across the viewport. */
 body::before {
   content: '';
   position: fixed;
@@ -60,19 +57,18 @@ body::before {
   width: 100vw;
   height: 100vh;
   background: var(--hero-image) center/cover no-repeat;
-  filter: brightness(0.8) contrast(1.05) saturate(1.2) blur(0.8px);
+  /* Increase brightness and saturation so the horse and particles stand out */
+  filter: brightness(0.9) contrast(1.1) saturate(1.3) blur(0.5px);
   z-index: -4;
 }
 
 @media (max-width: 768px) {
   body::before {
-    filter: brightness(0.75) contrast(1.05) saturate(1.2) blur(1.2px);
+    filter: brightness(0.85) contrast(1.1) saturate(1.3) blur(1px);
   }
 }
 
-/* Dark overlay over the background: improves legibility of text by
-   darkening the page from top to bottom. This overlay scrolls with
-   content so it does not feel detached. */
+/* Dark overlay to improve text legibility; gently fades downward */
 body::after {
   content: '';
   position: fixed;
@@ -80,14 +76,12 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(6, 16, 24, 0.15) 0%, rgba(6, 16, 24, 0.7) 100%);
+  background: linear-gradient(to bottom, rgba(6,16,24,0.1) 0%, rgba(6,16,24,0.65) 100%);
   pointer-events: none;
   z-index: -3;
 }
 
-/* Animated star field: two layers of cool white/blue stars with
-   different sizes and opacities. Slow drift animation makes them
-   gently move upwards. */
+/* Star field animations: two layers for depth. Larger stars are brighter. */
 html::before,
 html::after {
   content: '';
@@ -97,60 +91,67 @@ html::after {
   width: 100%;
   height: 100%;
   pointer-events: none;
+  animation: starsFloat linear infinite;
   z-index: -2;
-  animation: starsDrift linear infinite;
 }
 
+/* Primary star layer */
 html::before {
   background-image:
     radial-gradient(circle at 15% 25%, var(--star1) 0%, transparent 50%),
     radial-gradient(circle at 70% 20%, var(--star2) 0%, transparent 55%),
     radial-gradient(circle at 45% 75%, var(--star3) 0%, transparent 60%),
-    radial-gradient(circle at 25% 60%, var(--star2) 0%, transparent 65%),
-    radial-gradient(circle at 80% 70%, var(--star4) 0%, transparent 70%),
-    radial-gradient(circle at 35% 40%, var(--star3) 0%, transparent 65%);
-  background-size: 800% 800%;
-  filter: drop-shadow(0 0 15px var(--star1));
-  animation-duration: 90s;
+    radial-gradient(circle at 25% 60%, var(--star2) 0%, transparent 60%),
+    radial-gradient(circle at 80% 70%, var(--star4) 0%, transparent 65%),
+    radial-gradient(circle at 35% 40%, var(--star3) 0%, transparent 60%);
+  background-size: 600% 600%;
+  filter: drop-shadow(0 0 20px var(--star1));
+  animation-duration: 80s;
 }
 
+/* Secondary star layer */
 html::after {
   background-image:
     radial-gradient(circle at 10% 85%, var(--star3) 0%, transparent 55%),
     radial-gradient(circle at 90% 65%, var(--star2) 0%, transparent 60%),
-    radial-gradient(circle at 50% 15%, var(--star4) 0%, transparent 65%),
-    radial-gradient(circle at 60% 50%, var(--star3) 0%, transparent 60%),
+    radial-gradient(circle at 50% 15%, var(--star4) 0%, transparent 60%),
+    radial-gradient(circle at 60% 50%, var(--star3) 0%, transparent 55%),
     radial-gradient(circle at 30% 35%, var(--star4) 0%, transparent 70%),
-    radial-gradient(circle at 75% 45%, var(--star2) 0%, transparent 65%);
-  background-size: 1200% 1200%;
-  filter: drop-shadow(0 0 10px var(--star2));
-  animation-duration: 120s;
+    radial-gradient(circle at 75% 45%, var(--star2) 0%, transparent 60%);
+  background-size: 900% 900%;
+  filter: drop-shadow(0 0 15px var(--star2));
+  animation-duration: 110s;
 }
 
-@keyframes starsDrift {
+@keyframes starsFloat {
   from { transform: translateY(0); }
-  to   { transform: translateY(-4%); }
+  to   { transform: translateY(-5%); }
 }
 
-/* Header styling: remove the hero image duplication, but add a
-   translucent gradient and backdrop blur. A subtle border at the
-   bottom helps delineate the header from the content. */
+/* Header: simple gradient and blur. Keep padding similar to original pages */
 header {
-  background: linear-gradient(to bottom, rgba(6, 16, 24, 0.8) 0%, rgba(6, 16, 24, 0.6) 100%);
-  backdrop-filter: blur(5px) brightness(1.0);
-  -webkit-backdrop-filter: blur(5px) brightness(1.0);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to bottom, rgba(6,16,24,0.75) 0%, rgba(6,16,24,0.55) 100%);
+  backdrop-filter: blur(6px) brightness(1.0);
+  -webkit-backdrop-filter: blur(6px) brightness(1.0);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  padding: 6rem 1rem;
+  text-align: center;
+  color: var(--text-primary);
 }
 
-header h1,
-header h2,
-header p {
+@media (max-width: 768px) {
+  header {
+    padding: 4rem 1rem;
+  }
+}
+
+header h1, header h2, header p {
   margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/* Content container: glassy cards with blur and transparency. */
+/* Content sections: glassy cards with blur and transparency */
 .content-section {
   margin: 3rem auto;
   width: min(90%, 60rem);
@@ -169,7 +170,7 @@ header p {
   }
 }
 
-/* Buttons styling: accent coloured buttons with hover states */
+/* Buttons */
 button,
 .btn {
   background: var(--accent);
@@ -184,22 +185,23 @@ button,
 
 button:hover,
 .btn:hover {
-  background: #1f8d55;
+  background: var(--accent-hover);
 }
 
-/* Navigation bar: match the header style and highlight active links */
+/* Navigation bar: dark translucent with accent highlights */
 nav {
-  background: rgba(6, 16, 24, 0.85);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background: rgba(6,16,24,0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   padding: 0.5rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 nav a {
   color: var(--text-secondary);
   text-decoration: none;
   margin-right: 1rem;
+  transition: color 0.2s;
 }
 
 nav a:hover,
@@ -207,19 +209,19 @@ nav a.active {
   color: var(--accent);
 }
 
-/* Footer styling: dark translucent background with subtle border */
+/* Footer: dark translucent background with border */
 footer {
   padding: 2rem 1rem;
   text-align: center;
   font-size: 0.875rem;
   color: var(--text-secondary);
-  background: rgba(6, 16, 24, 0.85);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(6,16,24,0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Ensure images within content scale properly */
+/* Responsive images */
 img {
   max-width: 100%;
   height: auto;
