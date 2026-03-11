@@ -1,0 +1,44 @@
+/* Custom overrides for LITBOH */
+header {
+  background-image:
+    linear-gradient(rgba(14, 26, 36, 0.4), rgba(14, 26, 36, 0.7)),
+    url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+  background-position: center 25%;
+  background-size: cover;
+  padding: 8rem 1rem;
+  height: var(--header-height, 60vh);
+  min-height: 300px;
+}
+
+@media (max-width: 768px) {
+  header {
+    height: 55vh;
+    background-position: center 30%;
+  }
+}
+
+/* Animated background effect below header */
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05), rgba(255,255,255,0) 60%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04), rgba(255,255,255,0) 60%);
+  animation: moveBackground 60s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes moveBackground {
+  from { transform: translateX(0) translateY(0); }
+  to { transform: translateX(-50%) translateY(-20%); }
+}
