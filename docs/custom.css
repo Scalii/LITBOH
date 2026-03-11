@@ -1,19 +1,25 @@
 /* Custom overrides for LITBOH */
 header {
+  /* Keep the hero horse head visible while reducing header height. */
   background-image:
-    linear-gradient(rgba(14, 26, 36, 0.4), rgba(14, 26, 36, 0.7)),
+    linear-gradient(rgba(14, 26, 36, 0.35), rgba(14, 26, 36, 0.6)),
     url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
-  background-position: center 25%;
+  /* Position the background a bit higher to showcase the horse's head */
+  background-position: center 20%;
   background-size: cover;
-  padding: 6rem 1rem;
-  height: var(--header-height, 50vh);
-  min-height: 300px;
+  /* Reduce padding to shrink vertical height while keeping text centered */
+  padding: 4rem 1rem;
+  /* Default height fallback: reduce header height */
+  height: var(--header-height, 40vh);
+  min-height: 250px;
 }
 
 @media (max-width: 768px) {
   header {
-    height: 45vh;
-    background-position: center 30%;
+    /* Slightly smaller header on mobile devices */
+    height: 35vh;
+    background-position: center 25%;
+    padding: 3rem 1rem;
   }
 }
 
@@ -26,10 +32,10 @@ body {
 body::before {
   content: '';
   position: fixed;
-  top: var(--header-height, 50vh);
+  top: var(--header-height, 40vh);
   left: 0;
   width: 100%;
-  height: calc(100% - var(--header-height, 50vh));
+  height: calc(100% - var(--header-height, 40vh));
   background-image: url('landscape.png');
   background-size: cover;
   background-position: center center;
