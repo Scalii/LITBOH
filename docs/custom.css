@@ -1,35 +1,33 @@
 /*
-  LITBOH custom theme – v10 (March 2026)
+  LITBOH custom theme – v11 (March 2026)
 
-  This version resolves lingering issues with the site’s background and header.
-  The hero artwork (horse galloping under a moon) now serves as the full‑page
-  backdrop, with increased brightness and saturation so the horse and glowing
-  particles are clearly visible on every page. A soft gradient overlay keeps
-  text legible without obscuring the image. The header itself no longer shows
-  the hero artwork; instead, it uses a simple dark gradient with a subtle
-  blur, creating visual separation without feeling empty. Star effects are
-  intensified and rendered in cool whites and blues to avoid the yellow tint
-  seen in earlier versions. Mobile responsiveness and performance have been
-  carefully considered: all animations are lightweight and there are no
-  external scripts. Use this file to replace docs/custom.css in the
-  repository.
+  This iteration ensures the new design always overrides any inline styles defined
+  directly in the HTML files.  In previous versions the old inline rules
+  continued to set the header background image and page background colour,
+  preventing the hero artwork and starry sky from being displayed.  To fix
+  this, v11 applies `!important` to the key properties on `body` and `header`.
+
+  The hero artwork (horse galloping under a moon) remains the full‑page
+  backdrop.  A dark overlay and two layers of cool‑toned stars float above
+  the image.  The header uses a simple gradient with blur to separate it
+  visually from the background without showing the artwork itself.  Colours,
+  animations and layout remain as in v10.
 */
 
-:root {
-  /* Hero artwork used for the full‑page background (horse and particles).
-     The file sits in the same directory as the stylesheet. */
-  --hero-image: url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+/* Import everything from v10 as the base */
 
+/* Root variables */
+:root {
+  /* Hero artwork used for the full‑page background (horse and particles). */
+  --hero-image: url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
   /* Base colours */
   --text-primary: #f5f9ff;
   --text-secondary: #9bacbf;
   --accent: #26b46c;
   --accent-hover: #1e8c56;
-
   /* Card styling */
   --card-bg: rgba(6, 16, 24, 0.6);
   --card-blur: 10px;
-
   /* Star colours – cool whites and blues */
   --star1: rgba(255, 255, 255, 0.95);
   --star2: rgba(220, 235, 255, 0.85);
@@ -43,7 +41,8 @@ html, body {
   padding: 0;
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--text-primary);
-  background: transparent;
+  /* Force a transparent page background to override any inline background-colour */
+  background: transparent !important;
   position: relative;
   min-height: 100%;
 }
@@ -128,9 +127,9 @@ html::after {
   to   { transform: translateY(-5%); }
 }
 
-/* Header: simple gradient and blur. Keep padding similar to original pages */
+/* Header: simple gradient and blur. Use !important to override any inline background-image */
 header {
-  background: linear-gradient(to bottom, rgba(6,16,24,0.75) 0%, rgba(6,16,24,0.55) 100%);
+  background: linear-gradient(to bottom, rgba(6,16,24,0.75) 0%, rgba(6,16,24,0.55) 100%) !important;
   backdrop-filter: blur(6px) brightness(1.0);
   -webkit-backdrop-filter: blur(6px) brightness(1.0);
   border-bottom: 1px solid rgba(255,255,255,0.1);
