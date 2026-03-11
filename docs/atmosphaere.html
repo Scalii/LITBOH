@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LITBOH – Heimat</title>
-<style>
-
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LITBOH – Heimat</title><style>
 :root{
-  --bg-top: rgba(5,12,22,0.22);
-  --bg-bottom: rgba(4,10,18,0.80);
-  --surface: rgba(8,18,30,0.68);
-  --surface-strong: rgba(7,15,26,0.84);
+  --bg-top: rgba(5,12,22,0.24);
+  --bg-bottom: rgba(4,10,18,0.82);
+  --surface: rgba(8,18,30,0.72);
   --border: rgba(255,255,255,0.08);
   --text: #f4f7fb;
   --muted: #c7d3df;
@@ -18,24 +10,19 @@
   --accent-hover: #2f9a5e;
   --shadow: 0 18px 50px rgba(0,0,0,0.30);
 }
-
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
 html{scroll-behavior:smooth}
-
 body{
   font-family:"Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
   color:var(--text);
   line-height:1.68;
   overflow-x:hidden;
-  background:
-    linear-gradient(var(--bg-top), var(--bg-bottom)),
-    url("46186d34-40a3-486b-9bfc-bcadb65a34c5.png") center center / cover no-repeat fixed;
+  background:linear-gradient(var(--bg-top), var(--bg-bottom));
   background-color:#07111c;
   position:relative;
 }
-
-/* Desktop: lightweight stars only */
+/* darker forest fills whole page */
 body::before{
   content:"";
   position:fixed;
@@ -43,17 +30,11 @@ body::before{
   pointer-events:none;
   z-index:0;
   background:
-    radial-gradient(circle at 14% 22%, rgba(255,255,255,0.85) 0 1.5px, transparent 4px),
-    radial-gradient(circle at 74% 18%, rgba(210,230,255,0.75) 0 1.5px, transparent 4px),
-    radial-gradient(circle at 48% 70%, rgba(180,210,255,0.65) 0 1.5px, transparent 4px),
-    radial-gradient(circle at 84% 62%, rgba(255,255,255,0.55) 0 1.2px, transparent 3px),
-    radial-gradient(circle at 24% 58%, rgba(205,225,255,0.65) 0 1.5px, transparent 4px),
-    radial-gradient(circle at 62% 42%, rgba(255,255,255,0.5) 0 1.2px, transparent 3px);
-  opacity:.92;
-  filter:drop-shadow(0 0 8px rgba(210,230,255,0.45));
+    linear-gradient(rgba(5,12,22,0.18), rgba(4,10,18,0.74)),
+    url("46186d34-40a3-486b-9bfc-bcadb65a34c5.png") center center / cover no-repeat fixed;
+  filter: blur(1.2px) brightness(.55) saturate(1.02);
 }
-
-/* subtle static fireflies */
+/* sharper horse layer, smaller on desktop */
 body::after{
   content:"";
   position:fixed;
@@ -61,342 +42,104 @@ body::after{
   pointer-events:none;
   z-index:0;
   background:
-    radial-gradient(circle at 11% 88%, rgba(255,215,120,0.88) 0 4px, transparent 10px),
-    radial-gradient(circle at 83% 75%, rgba(255,215,120,0.72) 0 3px, transparent 8px),
-    radial-gradient(circle at 72% 83%, rgba(255,215,120,0.58) 0 2px, transparent 6px),
-    radial-gradient(circle at 21% 92%, rgba(255,215,120,0.78) 0 5px, transparent 12px);
-  filter:blur(.2px) drop-shadow(0 0 10px rgba(255,200,90,0.55));
+    url("46186d34-40a3-486b-9bfc-bcadb65a34c5.png") center 72px / min(1120px, 74vw) auto no-repeat fixed;
+  filter: brightness(.94) saturate(1.1);
+}
+html::before,html::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+html::before{
+  background:
+    radial-gradient(circle at 14% 22%, rgba(255,255,255,0.85) 0 1.5px, transparent 4px),
+    radial-gradient(circle at 74% 18%, rgba(210,230,255,0.72) 0 1.5px, transparent 4px),
+    radial-gradient(circle at 48% 70%, rgba(180,210,255,0.60) 0 1.5px, transparent 4px),
+    radial-gradient(circle at 84% 62%, rgba(255,255,255,0.55) 0 1.2px, transparent 3px),
+    radial-gradient(circle at 24% 58%, rgba(205,225,255,0.62) 0 1.5px, transparent 4px),
+    radial-gradient(circle at 62% 42%, rgba(255,255,255,0.50) 0 1.2px, transparent 3px);
+  filter: drop-shadow(0 0 8px rgba(210,230,255,0.45));
+  opacity:.92;
+}
+html::after{
+  background:
+    radial-gradient(circle at 11% 88%, rgba(255,215,120,0.78) 0 4px, transparent 10px),
+    radial-gradient(circle at 83% 75%, rgba(255,215,120,0.62) 0 3px, transparent 8px),
+    radial-gradient(circle at 72% 83%, rgba(255,215,120,0.48) 0 2px, transparent 6px),
+    radial-gradient(circle at 21% 92%, rgba(255,215,120,0.70) 0 5px, transparent 12px);
+  filter: blur(.2px) drop-shadow(0 0 10px rgba(255,200,90,0.50));
   opacity:.88;
 }
-
-nav, header, main, footer{position:relative; z-index:1}
-
+@media (max-width:900px){
+  body::before{
+    background:
+      linear-gradient(rgba(5,12,22,0.26), rgba(4,10,18,0.82)),
+      url("46186d34-40a3-486b-9bfc-bcadb65a34c5.png") center center / cover no-repeat scroll;
+    filter:none;
+  }
+  body::after{display:none}
+}
+nav,header,main,footer{position:relative;z-index:1}
 nav{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:1.6rem;
-  background:rgba(8,18,30,.84);
-  padding:.78rem 1rem;
-  position:sticky;
-  top:0;
-  z-index:30;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;
+  background:rgba(8,18,30,.84);padding:.78rem 1rem;position:sticky;top:0;z-index:30;
   border-bottom:1px solid rgba(255,255,255,.06);
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
 }
-nav a{
-  color:var(--text);
-  text-decoration:none;
-  font-weight:700;
-  opacity:.88;
-  transition:opacity .18s, color .18s, transform .18s;
-}
-nav a:hover, nav a.active{
-  color:var(--accent);
-  opacity:1;
-  transform:translateY(-1px);
-}
-
+nav a{color:var(--text);text-decoration:none;font-weight:700;opacity:.88;transition:opacity .18s,color .18s,transform .18s}
+nav a:hover,nav a.active{color:var(--accent);opacity:1;transform:translateY(-1px)}
 header{
-  padding:5.8rem 1rem 4.3rem;
-  text-align:center;
+  padding:5.6rem 1rem 4rem;text-align:center;
   background:linear-gradient(to bottom, rgba(10,20,32,.46), rgba(10,20,32,.22));
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-  border-bottom:1px solid rgba(255,255,255,.07);
-  box-shadow:0 10px 30px rgba(0,0,0,.18);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  border-bottom:1px solid rgba(255,255,255,.07);box-shadow:0 10px 30px rgba(0,0,0,.18);
 }
 .hero-panel{
-  max-width:860px;
-  margin:0 auto;
-  padding:1.45rem 1.25rem;
-  background:rgba(9,20,32,.22);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:20px;
-  backdrop-filter:blur(5px);
-  -webkit-backdrop-filter:blur(5px);
+  max-width:860px;margin:0 auto;padding:1.45rem 1.25rem;
+  background:rgba(9,20,32,.26);border:1px solid rgba(255,255,255,.06);border-radius:20px;
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
 }
-header h1{
-  margin:0;
-  font-size:clamp(2.8rem, 7vw, 5.1rem);
-  line-height:1;
-  letter-spacing:.02em;
-  text-shadow:0 4px 16px rgba(0,0,0,.55);
-}
-header p{
-  margin:1rem auto 0;
-  max-width:780px;
-  color:var(--muted);
-  font-size:clamp(1rem, 2vw, 1.28rem);
-  text-shadow:0 2px 8px rgba(0,0,0,.48);
-}
+header h1{margin:0;font-size:clamp(2.8rem,7vw,5.1rem);line-height:1;letter-spacing:.02em;text-shadow:0 4px 16px rgba(0,0,0,.55)}
+header p{margin:1rem auto 0;max-width:780px;color:var(--muted);font-size:clamp(1rem,2vw,1.2rem);text-shadow:0 2px 8px rgba(0,0,0,.48)}
 .hero-actions{margin-top:1.35rem}
-
 .btn{
-  display:inline-block;
-  background:linear-gradient(180deg, var(--accent), #38ae69);
-  color:#fff;
-  padding:.86rem 1.6rem;
-  border-radius:13px;
-  font-weight:800;
-  text-decoration:none;
-  transition:transform .18s, box-shadow .18s, background .18s;
-  box-shadow:0 10px 22px rgba(73,198,125,.28);
+  display:inline-block;background:linear-gradient(180deg, var(--accent), #38ae69);color:#fff;
+  padding:.86rem 1.6rem;border-radius:13px;font-weight:800;text-decoration:none;
+  transition:transform .18s, box-shadow .18s, background .18s;box-shadow:0 10px 22px rgba(73,198,125,.28)
 }
-.btn:hover{
-  background:linear-gradient(180deg, #56d28c, var(--accent-hover));
-  transform:translateY(-2px);
-  box-shadow:0 14px 26px rgba(73,198,125,.36);
-}
-
-main{
-  max-width:1200px;
-  margin:2.25rem auto 0;
-  padding:0 1rem 3rem;
-}
-
+.btn:hover{background:linear-gradient(180deg, #56d28c, var(--accent-hover));transform:translateY(-2px);box-shadow:0 14px 26px rgba(73,198,125,.36)}
+main{max-width:1200px;margin:2.1rem auto 0;padding:0 1rem 3rem}
 .section-shell{
-  margin-bottom:2rem;
-  background:rgba(9,20,32,.40);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:28px;
-  padding:1.35rem;
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
-  box-shadow:var(--shadow);
+  margin-bottom:2rem;background:rgba(9,20,32,.42);border:1px solid rgba(255,255,255,.06);
+  border-radius:28px;padding:1.35rem;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);box-shadow:var(--shadow)
 }
-.section-title{
-  margin:0 0 .6rem;
-  font-size:clamp(1.95rem, 4vw, 3rem);
-  line-height:1.08;
-}
-.section-lead{
-  margin:0 0 1rem;
-  color:var(--muted);
-  max-width:920px;
-}
-
+.section-title{margin:0 0 .6rem;font-size:clamp(1.95rem,4vw,3rem);line-height:1.08}
+.section-lead{margin:0 0 1rem;color:var(--muted);max-width:920px}
 .card{
-  background:linear-gradient(180deg, rgba(7,18,31,.82), rgba(5,14,24,.66));
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:1.25rem;
-  box-shadow:0 12px 28px rgba(0,0,0,.20), inset 0 0 0 1px rgba(255,255,255,.02);
-  margin-bottom:1rem;
-  transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  background:linear-gradient(180deg, rgba(7,18,31,.84), rgba(5,14,24,.68));border:1px solid var(--border);
+  border-radius:18px;padding:1.25rem;box-shadow:0 12px 28px rgba(0,0,0,.20), inset 0 0 0 1px rgba(255,255,255,.02);
+  margin-bottom:1rem;transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease
 }
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 18px 36px rgba(0,0,0,.28);
-  border-color:rgba(73,198,125,.22);
-}
-.card h3{
-  margin:.05rem 0 .55rem;
-  font-size:1.26rem;
-}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(0,0,0,.28);border-color:rgba(73,198,125,.22)}
+.card h3{margin:.05rem 0 .55rem;font-size:1.26rem}
 .card p:last-child{margin-bottom:0}
-
-.grid{
-  display:grid;
-  gap:1rem;
-}
-.grid.two{
-  grid-template-columns:repeat(2, minmax(0,1fr));
-}
-
-.kpi{
-  display:flex;
-  align-items:flex-start;
-  gap:.95rem;
-}
-.kpi-badge{
-  width:44px;
-  height:44px;
-  flex:0 0 auto;
-  border-radius:13px;
-  display:grid;
-  place-items:center;
-  background:rgba(73,198,125,.16);
-  color:#b5f5ce;
-  border:1px solid rgba(73,198,125,.28);
-  font-weight:800;
-}
-
-.loop-list{
-  display:grid;
-  gap:.9rem;
-}
-.loop-item{
-  display:flex;
-  align-items:flex-start;
-  gap:1rem;
-  background:linear-gradient(180deg, rgba(7,18,31,.78), rgba(5,14,24,.64));
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:18px;
-  padding:1rem;
-}
-.loop-number{
-  width:40px;
-  height:40px;
-  flex:0 0 auto;
-  border-radius:13px;
-  display:grid;
-  place-items:center;
-  background:rgba(73,198,125,.18);
-  border:1px solid rgba(73,198,125,.3);
-  color:#c1f7d6;
-  font-weight:800;
-}
-
-.roadmap{
-  display:grid;
-  gap:1rem;
-}
-.roadmap-step{
-  position:relative;
-  padding:1.12rem 1.1rem 1.15rem 1.18rem;
-  border-left:4px solid rgba(73,198,125,.66);
-  border-radius:18px;
-  background:linear-gradient(180deg, rgba(7,18,31,.82), rgba(5,14,24,.68));
-  border:1px solid rgba(255,255,255,.06);
-}
-.roadmap-step small{
-  display:block;
-  margin-bottom:.35rem;
-  color:#9fe2bb;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  font-weight:800;
-}
-.roadmap-step h3{
-  margin:.1rem 0 .3rem;
-}
-
-.quote-card{
-  font-size:clamp(1.05rem, 2vw, 1.2rem);
-  border-left:4px solid rgba(73,198,125,.62);
-  color:#e9eef5;
-}
-
-footer{
-  text-align:center;
-  color:var(--muted);
-  padding:1.25rem 1rem 2.1rem;
-  background:transparent;
-}
-.footer-brand{
-  display:inline-block;
-  padding:.4rem .9rem;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(7,18,31,.44);
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
-  text-transform:uppercase;
-  font-weight:800;
-  letter-spacing:.14em;
-}
-
-@media (max-width: 880px){
-  body{
-    background:
-      linear-gradient(rgba(5,12,22,0.28), rgba(4,10,18,0.82)),
-      url("46186d34-40a3-486b-9bfc-bcadb65a34c5.png") center center / cover no-repeat scroll;
-  }
-  nav{
-    gap:1rem;
-    font-size:.96rem;
-  }
-  header{
-    padding:4.6rem 1rem 3.6rem;
-  }
-  .hero-panel{
-    padding:1.15rem 1rem;
-  }
-  .grid.two{
-    grid-template-columns:1fr;
-  }
-  .section-shell{
-    border-radius:22px;
-    padding:1rem;
-  }
-}
-
-@media (max-width: 560px){
-  nav{
-    gap:.8rem;
-    font-size:.9rem;
-  }
-  header h1{
-    font-size:2.5rem;
-  }
-  .btn{
-    width:100%;
-    text-align:center;
-  }
-}
-
-</style>
-</head>
-<body>
-<nav><a href="index.html" class="">Start</a>
-<a href="vision.html" class="">Vision</a>
-<a href="mechaniken.html" class="">Mechaniken</a>
-<a href="gameplay-loop.html" class="">Gameplay</a>
-<a href="roadmap.html" class="">Roadmap</a>
-<a href="atmosphaere.html" class="active">Atmosphäre</a></nav>
-<header>
-  <div class="hero-panel">
-    <h1>Heimat</h1>
-    <p>Eine Welt, zu der Spieler immer wieder zurückkehren möchten.</p>
-    <div class="hero-actions">
-      <a href="index.html" class="btn">Zurück zur Startseite</a>
-    </div>
-  </div>
-</header>
-<main>
-
-<section class="section-shell">
-  <h2 class="section-title">Heimat</h2>
-  <p class="section-lead">
-    Dieser Teil von LITBOH steht nicht einfach für Atmosphäre als Schlagwort, sondern für das Gefühl von Heimat.
-    Die Welt soll ein Ort sein, an dem Spieler bleiben wollen – und zu dem sie immer wieder zurückkehren.
-  </p>
-  <p class="section-lead">
-    Zwischen Wäldern, stillen Wegen, Lichtpartikeln und offenen Landschaften entsteht eine ruhige Pferdewelt,
-    in der man nicht nur Aufgaben erfüllt, sondern ankommt.
-  </p>
-</section>
-
-<section class="section-shell">
-  <div class="grid two">
-    <div class="card">
-      <h3>Ein Ort zum Zurückkehren</h3>
-      <p>LITBOH soll Spielern das Gefühl geben, dass diese Welt auf sie wartet – nicht nur als Spiel, sondern als vertrauter Ort.</p>
-    </div>
-    <div class="card">
-      <h3>Ruhe & Natur</h3>
-      <p>Wälder, Nachtluft und weiche Lichtstimmungen schaffen eine Umgebung, die nicht hektisch ist, sondern einladend und warm.</p>
-    </div>
-    <div class="card">
-      <h3>Verbindung</h3>
-      <p>Das Zuhausegefühl entsteht nicht nur durch Orte, sondern durch die gemeinsame Zeit mit dem Pferd und die Verlässlichkeit dieser Beziehung.</p>
-    </div>
-    <div class="card">
-      <h3>Identität</h3>
-      <p>LITBOH soll einen Stil haben, den man sofort wiedererkennt: ruhig, hochwertig, naturverbunden und ehrlich.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section-shell">
-  <div class="card quote-card">
-    Heimat bedeutet in LITBOH nicht Stillstand – sondern ein Ort, an dem Vertrauen, Freiheit und Nähe immer wieder neu erlebt werden.
-  </div>
-</section>
-
-</main>
-<footer><span class="footer-brand">LITBOH</span></footer>
-</body>
-</html>
+.grid{display:grid;gap:1rem}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.kpi{display:flex;align-items:flex-start;gap:.95rem}
+.kpi-badge{width:44px;height:44px;flex:0 0 auto;border-radius:13px;display:grid;place-items:center;background:rgba(73,198,125,.16);color:#b5f5ce;border:1px solid rgba(73,198,125,.28);font-weight:800}
+.loop-list,.roadmap{display:grid;gap:.9rem}
+.loop-item{display:flex;align-items:flex-start;gap:1rem;background:linear-gradient(180deg, rgba(7,18,31,.78), rgba(5,14,24,.64));border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:1rem}
+.loop-number{width:40px;height:40px;flex:0 0 auto;border-radius:13px;display:grid;place-items:center;background:rgba(73,198,125,.18);border:1px solid rgba(73,198,125,.3);color:#c1f7d6;font-weight:800}
+.roadmap-step{padding:1.12rem 1.1rem 1.15rem 1.18rem;border-left:4px solid rgba(73,198,125,.66);border-radius:18px;background:linear-gradient(180deg, rgba(7,18,31,.82), rgba(5,14,24,.68));border:1px solid rgba(255,255,255,.06)}
+.roadmap-step small{display:block;margin-bottom:.35rem;color:#9fe2bb;text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+.roadmap-step h3{margin:.1rem 0 .3rem}
+.quote-card{font-size:clamp(1.05rem,2vw,1.2rem);border-left:4px solid rgba(73,198,125,.62);color:#e9eef5}
+footer{text-align:center;color:var(--muted);padding:1.25rem 1rem 2.1rem;background:transparent}
+.footer-brand{display:inline-block;padding:.4rem .9rem;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(7,18,31,.44);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);text-transform:uppercase;font-weight:800;letter-spacing:.14em}
+@media (max-width:980px){.grid.three,.grid.two{grid-template-columns:1fr}}
+@media (max-width:900px){nav{gap:1rem;font-size:.96rem}header{padding:4.6rem 1rem 3.6rem}.hero-panel{padding:1.15rem 1rem}.section-shell{border-radius:22px;padding:1rem}}
+@media (max-width:560px){nav{gap:.8rem;font-size:.9rem}header h1{font-size:2.5rem}.btn{width:100%;text-align:center}}
+</style></head><body><nav><a href="index.html" class="">Start</a><a href="vision.html" class="">Vision</a><a href="mechaniken.html" class="">Mechaniken</a><a href="gameplay-loop.html" class="">Gameplay</a><a href="roadmap.html" class="">Roadmap</a><a href="atmosphaere.html" class="active">Atmosphäre</a></nav><header><div class="hero-panel"><h1>Heimat</h1><p>Eine Welt, zu der Spieler immer wieder zurückkehren möchten.</p><div class="hero-actions"><a href="index.html" class="btn">Zurück zur Startseite</a></div></div></header><main><section class="section-shell"><h2 class="section-title">Heimat</h2><p class="section-lead">Dieser Teil von LITBOH steht nicht einfach für Atmosphäre als Schlagwort, sondern für das Gefühl von Heimat. Die Welt soll ein Ort sein, an dem Spieler bleiben wollen – und zu dem sie immer wieder zurückkehren.</p><p class="section-lead">Zwischen Wäldern, stillen Wegen, Lichtpartikeln und offenen Landschaften entsteht eine ruhige Pferdewelt, in der man nicht nur Aufgaben erfüllt, sondern ankommt.</p></section><section class="section-shell"><div class="grid two"><div class="card"><h3>Ein Ort zum Zurückkehren</h3><p>LITBOH soll Spielern das Gefühl geben, dass diese Welt auf sie wartet – nicht nur als Spiel, sondern als vertrauter Ort.</p></div><div class="card"><h3>Ruhe & Natur</h3><p>Wälder, Nachtluft und weiche Lichtstimmungen schaffen eine Umgebung, die nicht hektisch ist, sondern einladend und warm.</p></div><div class="card"><h3>Dein eigener Hof</h3><p>Heimat entsteht auch durch den eigenen Reithof, Stall oder die kleine Farm – ein fester Ort, an dem Pferd und Spieler ankommen.</p></div><div class="card"><h3>Verbindung</h3><p>Das Zuhausegefühl entsteht nicht nur durch Orte, sondern durch die gemeinsame Zeit mit dem Pferd und die Verlässlichkeit dieser Beziehung.</p></div></div></section></main><footer><span class="footer-brand">LITBOH</span></footer></body></html>
