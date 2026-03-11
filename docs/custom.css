@@ -3,33 +3,31 @@
  * 
  * This stylesheet tweaks the hero header height and positioning so the horse
  * remains visible on both desktop and mobile while occupying less vertical
- * space. Below the header a subtle, animated landscape scene is layered
+ * space. Below the header a subtle, animated dark-forest scene is layered
  * behind the content to add atmosphere without overpowering the page.
  */
 
 header {
-  /* Use the same hero image with a slightly higher focus on the head */
+  /* Hero image with focus on the head; adjust position to reveal the horse */
   background-image:
     linear-gradient(rgba(14, 26, 36, 0.35), rgba(14, 26, 36, 0.7)),
     url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
-  background-position: center 15%;
+  background-position: center 20%;
   background-size: cover;
   padding: 2.5rem 1rem;
-  /* Smaller header height for desktop */
   height: var(--header-height, 30vh);
   min-height: 180px;
 }
 
 @media (max-width: 768px) {
   header {
-    /* Further reduce height on mobile and adjust positioning */
     height: 25vh;
-    background-position: center 20%;
+    background-position: center 25%;
     padding: 2rem 1rem;
   }
 }
 
-/* Ensure the page body can host the animated landscape */
+/* Body wrapper for the animated background */
 body {
   position: relative;
   overflow-x: hidden;
@@ -38,25 +36,23 @@ body {
 body::before {
   content: '';
   position: fixed;
-  /* Start just below the hero header */
   top: var(--header-height, 30vh);
   left: 0;
   width: 100%;
   height: calc(100% - var(--header-height, 30vh));
-  /* Apply a scenic landscape as the base of the atmospheric animation */
-  background-image: url('landscape.png');
+  /* Use the same dark forest image as the hero but blur and darken it. */
+  background-image: url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
   background-size: cover;
   background-position: center;
-  /* Reduce the impact of the image and unify it with the dark theme */
-  opacity: 0.15;
-  filter: brightness(0.5) contrast(1.2) saturate(0.9) blur(2px);
-  /* Animate the landscape gently from left to right to evoke a breeze */
-  animation: moveLandscape 45s linear infinite;
+  opacity: 0.12;
+  filter: brightness(0.3) saturate(0.8) blur(3px);
+  /* Slowly shift the background horizontally to simulate a gentle breeze */
+  animation: moveForest 60s linear infinite;
   pointer-events: none;
   z-index: -1;
 }
 
-@keyframes moveLandscape {
+@keyframes moveForest {
   0% { transform: translateX(0); }
   50% { transform: translateX(-10%); }
   100% { transform: translateX(0); }
