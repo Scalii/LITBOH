@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LITBOH – Spielmechaniken</title>
+  <style>
+    :root {
+      --background: #0e1a24;
+      --surface: #152736;
+      --accent: #3fa46a;
+      --accent-hover: #2d7a4e;
+      --text: #f3f3f3;
+      --muted: #8aa2b3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      background-color: var(--surface);
+      padding: 0.75rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a.active {
+      color: var(--accent);
+    }
+
+    header {
+      background-image: linear-gradient(rgba(14,26,36,0.5), rgba(14,26,36,0.8)), url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+      background-size: cover;
+      background-position: center 40%;
+      padding: 6rem 1rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+    }
+
+    header p {
+      margin-top: 1rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h2 {
+      margin-bottom: 1rem;
+    }
+
+    .card {
+      background-color: var(--surface);
+      padding: 1.5rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      margin-bottom: 1.5rem;
+    }
+
+    .mechanics-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mechanics-nav a {
+      padding: 0.5rem 1rem;
+      background-color: var(--surface);
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--text);
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .mechanics-nav a:hover {
+      background-color: var(--accent-hover);
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 4rem 1rem;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+      nav {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Start</a>
+    <a href="vision.html">Vision</a>
+    <a href="mechaniken.html" class="active">Mechaniken</a>
+    <a href="gameplay-loop.html">Gameplay</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="atmosphaere.html">Atmosphäre</a>
+  </nav>
+  <header>
+    <h1>Spielmechaniken</h1>
+    <p>Vom Herzpferd bis zur KI – entdecke alle Mechaniken, die LITBOH einzigartig machen.</p>
+  </header>
+  <main>
+    <section class="section">
+      <h2>Unsere Mechaniken</h2>
+      <nav class="mechanics-nav">
+        <a href="#herzpferd">Herzpferd</a>
+        <a href="#trainer">Trainer‑Karriere</a>
+        <a href="#behavior">Verhalten &amp; KI</a>
+        <a href="#stall">Stall &amp; Umgebung</a>
+        <a href="#welt">Offene Welt &amp; Erkundung</a>
+        <a href="#turniere">Wettbewerbe &amp; Turniere</a>
+      </nav>
+      <article id="herzpferd" class="card">
+        <h3>Dein Herzpferd</h3>
+        <p>
+          Zu Beginn des Spiels gebierst du dein eigenes Fohlen – dein Herzpferd. Du begleitest es von den ersten wackeligen Schritten bis hin zum erfahrenen Champion. Jedes Pferd hat eine individuelle Persönlichkeit und reagiert auf dein Verhalten: Es kann vertrauensvoll, scheu, neugierig oder auch dominant werden. Diese Entwicklung entsteht aus euren gemeinsamen Erfahrungen – kein Durchlauf gleicht dem anderen.
+        </p>
+      </article>
+      <article id="trainer" class="card">
+        <h3>Trainer‑Karriere</h3>
+        <p>
+          Um Geld zu verdienen und dein Wissen zu erweitern, arbeitest du als Pferdetrainerin. Du nimmst Pferde anderer Besitzer in Beritt, reitest junge Pferde an oder hilfst Problemfohlen, wieder Vertrauen zu fassen. Mit jedem Auftrag lernst du neue Trainingsmethoden und schaltest hilfreiche Ausrüstung frei. Deine eigene Erfahrung wirkt sich direkt auf dein Herzpferd aus – schließlich wirst du ein immer besserer Trainer.
+        </p>
+      </article>
+      <article id="behavior" class="card">
+        <h3>Dynamisches Verhalten &amp; KI</h3>
+        <p>
+          Pferde lernen durch Konsequenz, Timing und Motivation. Unser System simuliert diese Prinzipien: Vertrauen, Respekt, Angst, Motivation und Stress sind Kennwerte, die ständig angepasst werden. Nutzt du nur Futter als Belohnung, wird dein Pferd ständig nach Leckerli suchen. Arbeitest du mit zu viel Druck, entwickelt es Angst oder Aggression. Geduld, Fairness und ein guter Stallalltag führen zu einem ausgeglichenen Pferd, das bereit ist, für dich durchs Feuer zu gehen.
+        </p>
+      </article>
+      <article id="stall" class="card">
+        <h3>Stall &amp; Umgebung</h3>
+        <p>
+          Ein Pferd braucht mehr als Training: Baue deinen Stall aus, errichte großzügige Weiden, einen Roundpen, einen Dressurplatz oder eine Vielseitigkeitsstrecke. Gestalte Futterstellen und gönne deinem Pferd Rückzugsorte. Ein liebevoll eingerichteter Hof wirkt sich positiv auf Gesundheit, Motivation und Stresslevel aus – und macht deinen Hof zu einem echten Zuhause.
+        </p>
+      </article>
+      <article id="welt" class="card">
+        <h3>Offene Welt &amp; Erkundung</h3>
+        <p>
+          Abseits des Trainings wartet eine vielfältige Welt darauf, entdeckt zu werden. Reite durch Wälder, über Felder und in kleine Western‑Städtchen, sammele Ressourcen für den Stallbau, begegne Wildpferden und hilf Dorfbewohnern bei kleinen Aufgaben. Die Welt von LITBOH soll zum Erkunden einladen und immer neue Geschichten erzählen.
+        </p>
+      </article>
+      <article id="turniere" class="card">
+        <h3>Wettbewerbe &amp; Turniere</h3>
+        <p>
+          Wenn du und dein Herzpferd bereit seid, könnt ihr euch auf Turnieren messen: Dressur, Springen, Vielseitigkeit oder Western‑Disziplinen. Die Leistung hängt von eurer Vorbereitung, dem Vertrauen zwischen euch und dem Stresslevel des Pferdes ab. Gewinne Preisgelder und sammle Ruhm – aber vergiss nie, dass der Weg das Ziel ist.
+        </p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

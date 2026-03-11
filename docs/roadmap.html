@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LITBOH – Roadmap</title>
+  <style>
+    :root {
+      --background: #0e1a24;
+      --surface: #152736;
+      --accent: #3fa46a;
+      --accent-hover: #2d7a4e;
+      --text: #f3f3f3;
+      --muted: #8aa2b3;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      background-color: var(--surface);
+      padding: 0.75rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    nav a.active {
+      color: var(--accent);
+    }
+    header {
+      background-image: linear-gradient(rgba(14,26,36,0.5), rgba(14,26,36,0.8)), url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+      background-size: cover;
+      background-position: center 40%;
+      padding: 6rem 1rem;
+      text-align: center;
+      color: #fff;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+    }
+    header p {
+      margin-top: 1rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .section {
+      margin-bottom: 4rem;
+    }
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline-entry {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .timeline-entry::before {
+      content: attr(data-step);
+      position: absolute;
+      left: -2rem;
+      top: 0;
+      background-color: var(--accent);
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      color: #fff;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .timeline-entry h3 {
+      margin: 0 0 0.5rem;
+    }
+    .timeline-entry p {
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      header {
+        padding: 4rem 1rem;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+      nav {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Start</a>
+    <a href="vision.html">Vision</a>
+    <a href="mechaniken.html">Mechaniken</a>
+    <a href="gameplay-loop.html">Gameplay</a>
+    <a href="roadmap.html" class="active">Roadmap</a>
+    <a href="atmosphaere.html">Atmosphäre</a>
+  </nav>
+  <header>
+    <h1>Roadmap</h1>
+    <p>Unser Fahrplan von der ersten Idee bis zur Veröffentlichung.</p>
+  </header>
+  <main>
+    <section class="section">
+      <div class="timeline">
+        <div class="timeline-entry" data-step="1">
+          <h3>Prototyp &amp; Grundsysteme</h3>
+          <p>Implementierung der Basismechaniken: Charaktererstellung des Pferdes, einfache Pflegeroutine, erstes Reiten und grundlegende Trainer‑Aufträge.</p>
+        </div>
+        <div class="timeline-entry" data-step="2">
+          <h3>Offene Welt &amp; Stallbau</h3>
+          <p>Erweiterung der Spielwelt mit erkundbaren Gebieten, Ressourcen und Crafting. Einführung des Stallbaus und weiterer Einrichtungen.</p>
+        </div>
+        <div class="timeline-entry" data-step="3">
+          <h3>Dynamische KI &amp; Turniere</h3>
+          <p>Verfeinerung des Verhaltenssystems, neue Trainingsmethoden, Einführung erster Wettbewerbe in Dressur und Springen.</p>
+        </div>
+        <div class="timeline-entry" data-step="4">
+          <h3>Western‑Disziplinen &amp; Multiplayer‑Features</h3>
+          <p>Erweiterung um Western‑Turniere wie Reining, Team Penning oder Barrel Racing. Erste Multiplayer‑Funktionen für gemeinsame Ausritte und Wettbewerbe.</p>
+        </div>
+        <div class="timeline-entry" data-step="5">
+          <h3>Feinschliff &amp; Veröffentlichung</h3>
+          <p>Balancing, Polishing und Integration von Spieler‑Feedback. Vorbereitung auf Early Access und spätere Vollversion.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
