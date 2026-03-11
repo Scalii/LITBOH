@@ -56,9 +56,10 @@
     }
 
     header {
-      background-image: linear-gradient(rgba(14,26,36,0.5), rgba(14,26,36,0.8)), url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+      /* Hellerer Verlauf und zentrierte Position für bessere Sichtbarkeit des Pferdes */
+      background-image: linear-gradient(rgba(14,26,36,0.4), rgba(14,26,36,0.7)), url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
       background-size: cover;
-      background-position: center 45%;
+      background-position: center center;
       padding: 4rem 1rem;
       text-align: center;
       color: #fff;
@@ -85,6 +86,8 @@
 
     .section {
       margin-bottom: 4rem;
+      /* sorgt dafür, dass Ankerlinks nicht unter der Navigation verschwinden */
+      scroll-margin-top: 120px;
     }
 
     .section h2 {
