@@ -20,7 +20,8 @@
       --accent-hover: #2d7a4e;
       --text: #f3f3f3;
       --muted: #8aa2b3;
-      --header-height: 65vh;
+      /* Größere Höhe für das Titelbild, damit das Pferd auf Desktop und Mobil vollständig sichtbar bleibt */
+      --header-height: 70vh;
     }
 
     * {
@@ -60,10 +61,11 @@
 
     header {
       height: var(--header-height);
-      background-image: linear-gradient(rgba(14,26,36,0.4), rgba(14,26,36,0.8)), url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+      /* Hellerer Verlauf und zentrierte Position für bessere Sichtbarkeit des Pferdes */
+      background-image: linear-gradient(rgba(14,26,36,0.3), rgba(14,26,36,0.7)), url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
       background-size: cover;
-      /* Position so dass das Pferd sowohl auf Desktop als auch auf Mobil sichtbar bleibt */
-      background-position: center 40%;
+      /* Zentriert das Pferd sowohl horizontal als auch vertikal, damit Kopf und Körper im Bild bleiben */
+      background-position: center center;
       display: flex;
       flex-direction: column;
       align-items: center;
