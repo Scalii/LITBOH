@@ -1,177 +1,212 @@
 <!DOCTYPE html>
-<html lang='de'>
+<html lang="de">
 <head>
-  <meta charset='UTF-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LITBOH – Startseite</title>
   <style>
     /*
-      Diese Startseite dient als Portal für das Projekt. Ein
-      atmosphärisches Titelbild mit einem galoppierenden Pferd
-      vermittelt sofort die Stimmung von Freiheit und Abenteuer.
-      Karten mit kurzen Beschreibungen verweisen auf die ausführliche
-      Planung im Dokument „planung.html“. Farben und Typografie
-      orientieren sich an der Western‑Wald‑Ästhetik, bleiben aber
-      übersichtlich und modern.
+      Modernes Startseitendesign für LITBOH. Der Fokus liegt auf einem
+      stimmungsvollen Titelbild, das das Herzstück des Spiels – dein Pferd –
+      sowohl auf großen Bildschirmen als auch auf Smartphones in Szene setzt.
+      Eine dunkle Farbpalette mit warmen Grüntönen erinnert an Wald und
+      Westernromantik. Auf der Startseite werden die wichtigsten Bereiche
+      knapp vorgestellt und mit Links zur Planungsseite versehen.
     */
     :root {
       --background: #0e1a24;
       --surface: #152736;
       --accent: #3fa46a;
+      --accent-hover: #2d7a4e;
       --text: #f3f3f3;
       --muted: #8aa2b3;
-      --card-shadow: rgba(0, 0, 0, 0.4);
+      --header-height: 65vh;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background-color: var(--background);
       color: var(--text);
       line-height: 1.6;
     }
 
-    header {
-      background: linear-gradient(180deg, rgba(5, 23, 34, 0.6), rgba(5, 23, 34, 0.9)),
-                  url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
-      background-size: cover;
-      /* Position so that der Pferdekopf gut sichtbar bleibt */
-      background-position: 50% 30%;
-      padding: 100px 20px;
-      text-align: center;
-      color: #fff;
-    }
-
-    header h1 {
-      font-size: 3.2rem;
-      margin: 0 0 10px 0;
-      letter-spacing: 2px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 30px auto;
-      opacity: 0.9;
-    }
-
-    .cta {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      background-color: var(--accent);
-      color: var(--background);
-      border-radius: 4px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background-color 0.2s;
-    }
-
-    .cta:hover {
-      background-color: #2d7a4e;
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      grid-gap: 24px;
-    }
-
-    .card {
-      background-color: var(--surface);
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 6px var(--card-shadow);
+    /* Hauptnavigation */
+    nav {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
+      gap: 2rem;
+      background-color: var(--surface);
+      padding: 0.75rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .card h3 {
-      margin-top: 0;
-      color: var(--accent);
-    }
-
-    .card p {
-      flex-grow: 1;
-    }
-
-    .card a {
-      align-self: flex-start;
-      margin-top: 15px;
-      color: var(--accent);
+    nav a {
+      color: var(--text);
       text-decoration: none;
       font-weight: 600;
       transition: color 0.2s;
     }
 
-    .card a:hover {
-      color: #2d7a4e;
+    nav a:hover {
+      color: var(--accent);
     }
 
-    footer {
+    header {
+      height: var(--header-height);
+      background-image: linear-gradient(rgba(14,26,36,0.4), rgba(14,26,36,0.8)), url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
+      background-size: cover;
+      /* Position so dass das Pferd sowohl auf Desktop als auch auf Mobil sichtbar bleibt */
+      background-position: center 40%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 40px 20px;
-      color: var(--muted);
-      border-top: 1px solid var(--surface);
-      margin-top: 40px;
+      color: #fff;
+      padding: 0 1rem;
     }
 
-    @media (max-width: 600px) {
+    header h1 {
+      margin: 0;
+      font-size: 3.5rem;
+      letter-spacing: 3px;
+    }
+
+    header p {
+      margin-top: 1rem;
+      max-width: 700px;
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+
+    header .cta {
+      margin-top: 2rem;
+      background-color: var(--accent);
+      color: var(--background);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+
+    header .cta:hover {
+      background-color: var(--accent-hover);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background-color: var(--surface);
+      padding: 1.5rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      margin: 0 0 1rem 0;
+      color: var(--muted);
+    }
+
+    .card a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsives Verhalten */
+    @media (max-width: 768px) {
       header h1 {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
       }
-      main {
-        grid-template-columns: 1fr;
+      header p {
+        font-size: 1.1rem;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
       }
     }
   </style>
 </head>
 <body>
+  <nav>
+    <a href="planung.html#vision">Vision</a>
+    <a href="planung.html#mechanics">Mechaniken</a>
+    <a href="planung.html#loop">Gameplay‑Loop</a>
+    <a href="planung.html#roadmap">Roadmap</a>
+    <a href="planung.html#atmosphere">Atmosphäre</a>
+  </nav>
+
   <header>
     <h1>LITBOH</h1>
-    <p>Willkommen bei <strong>LITBOH</strong> – einem Ort, an dem Freiheit, Bindung und der Zauber des Westens
-      aufeinandertreffen. Erschaffe dein Herzpferd, erkunde weite Wälder und erlebe eine Welt, die sich
-      wie ein Zuhause anfühlt.</p>
-    <a href='planung.html' class='cta'>Zur Planung</a>
+    <p>Ein Zuhause für alle Pferdefreunde – spüre Freiheit, Bindung und Vertrauen in deiner eigenen Western‑Welt.</p>
+    <a class="cta" href="planung.html">Zur Planungsseite</a>
   </header>
+
   <main>
-    <div class='card'>
-      <h3>Vision &amp; Gefühl</h3>
-      <p>Freiheit, Bindung, Vertrauen, Western und Wald – unsere Vision verbindet all diese Elemente zu einem
-        einzigartigen Erlebnis. Lies, wie wir das Heimatgefühl für Spieler schaffen wollen.</p>
-      <a href='planung.html#vision'>Mehr erfahren</a>
-    </div>
-    <div class='card'>
-      <h3>Mechaniken</h3>
-      <p>Vom Herzpferd über den Trainer‑Beruf bis zu dynamischem Verhalten: entdecke alle Systeme, die LITBOH
-        lebendig machen.</p>
-      <a href='planung.html#mechanics'>Zu den Mechaniken</a>
-    </div>
-    <div class='card'>
-      <h3>Gameplay‑Loop</h3>
-      <p>LITBOH folgt einem durchdachten Kreislauf aus Ausbildung, Abenteuer, Ausbau und Turnieren. Erfahre, wie
-        dich dieser Loop immer wieder motiviert.</p>
-      <a href='planung.html#loop'>Zum Loop</a>
-    </div>
-    <div class='card'>
-      <h3>Roadmap</h3>
-      <p>Schau dir an, welche Entwicklungsphasen geplant sind – von der Konzeptphase über Prototypen bis zum Release.
-        So behältst du den Überblick.</p>
-      <a href='planung.html#roadmap'>Zur Roadmap</a>
-    </div>
-    <div class='card'>
-      <h3>Atmosphäre</h3>
-      <p>Warum Western und Wald? Welche Stimmung wollen wir erzeugen? Lies mehr über das Klangbild und die visuelle
-        Ausrichtung unserer Welt.</p>
-      <a href='planung.html#atmosphere'>Zur Atmosphäre</a>
+    <h2>Entdecke LITBOH</h2>
+    <p>Unsere Startseite gibt dir einen ersten Eindruck von der Reise, die dich erwartet. Erfahre mehr über die Vision, die einzigartigen Mechaniken, unseren Gameplay‑Loop, die Roadmap und die besondere Atmosphäre des Spiels.</p>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Vision &amp; Spielgefühl</h3>
+        <p>Finde heraus, wie LITBOH Freiheit, Bindung, Vertrauen und Western‑Romantik vereint.</p>
+        <a href="planung.html#vision">Mehr erfahren →</a>
+      </div>
+      <div class="card">
+        <h3>Spielmechaniken</h3>
+        <p>Entdecke, wie dein Herzpferd wächst, du zur Trainerin wirst und die Welt lebendig reagiert.</p>
+        <a href="planung.html#mechanics">Mehr erfahren →</a>
+      </div>
+      <div class="card">
+        <h3>Gameplay‑Loop</h3>
+        <p>Erlebe den Kreislauf aus Pflege, Ausbildung, Training, Erkundung und gemeinsamen Erfolgen.</p>
+        <a href="planung.html#loop">Mehr erfahren →</a>
+      </div>
+      <div class="card">
+        <h3>Roadmap</h3>
+        <p>Sieh dir an, welche Schritte wir auf dem Weg zur Vollversion planen und wie du mitmachen kannst.</p>
+        <a href="planung.html#roadmap">Mehr erfahren →</a>
+      </div>
+      <div class="card">
+        <h3>Atmosphäre</h3>
+        <p>Tauche ein in die Stimmungen von Wald, Sternenhimmel und Western‑Dörfern, die LITBOH prägen.</p>
+        <a href="planung.html#atmosphere">Mehr erfahren →</a>
+      </div>
     </div>
   </main>
-  <footer>
-    <p>© 2026 LITBOH – Diese Seite dient als Einstieg in die Projektplanung. Für detaillierte Informationen besuche die Planung.</p>
-  </footer>
 </body>
 </html>
