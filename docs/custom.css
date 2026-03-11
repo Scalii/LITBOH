@@ -1,38 +1,42 @@
 /*
-  LITBOH custom theme – v7 (March 2026)
+  LITBOH custom theme – v8 (March 2026)
 
-  This stylesheet provides a cohesive, responsive night‑forest theme for all
-  pages on the LITBOH site. It uses the original header artwork – a horse
-  galloping through a misty forest under the moon – as a full‑page
-  background so that the dramatic image and its glowing particles fill the
-  screen behind all content. The page header itself is simplified and
-  separated from the background with a dark gradient, ensuring that the
-  brand and navigation remain legible without duplicating the horse. Stars
-  and firefly‑like particles float gently across the page for a magical
-  effect. The layout remains fully responsive and performs well on mobile
-  devices by avoiding heavy images or scripts.
-
-  Usage: copy this file’s contents into docs/custom.css in your repository.
+  This version refines the night‑forest aesthetic based on user feedback.
+  The original hero artwork (horse galloping under a moon) becomes a
+  full‑page backdrop with improved brightness and contrast so the horse
+  and glowing particles are clearly visible on all pages. The header is
+  simplified but retains subtle texture via a gradient and backdrop
+  blur, creating separation from the content while still blending
+  harmoniously with the background. Star effects are brightened and
+  recoloured to cool whites and pale blues for a neutral glow rather
+  than a yellow tint. All styles are fully responsive and avoid heavy
+  scripts for good performance on mobile devices.
 */
 
 :root {
-  /* Path to the original header image. It sits in the same directory as
-     this CSS file so no path prefix is needed. */
+  /* Hero artwork used for the full‑page background. It resides in the
+     same folder as this stylesheet, so no additional path is needed. */
   --hero-image: url('46186d34-40a3-486b-9bfc-bcadb65a34c5.png');
-  /* Card background surface and blur. */
-  --card-bg: rgba(0, 13, 28, 0.6);
-  --card-blur: 10px;
-  /* Primary colour accents (for buttons etc.). */
+
+  /* Surface styling for cards and UI elements */
+  --card-bg: rgba(6, 16, 24, 0.65);
+  --card-blur: 8px;
+
+  /* Accent colour for interactive elements */
   --accent: #26b46c;
-  /* Text colours. */
-  --text-primary: #e8f1ff;
-  --text-secondary: #aabbd8;
+
+  /* Typography colours */
+  --text-primary: #f1f7ff;
+  --text-secondary: #99aac3;
+
+  /* Star colours (cool whites and blues) */
+  --star1: rgba(255, 255, 255, 0.9);
+  --star2: rgba(220, 235, 255, 0.8);
+  --star3: rgba(180, 210, 255, 0.6);
+  --star4: rgba(150, 185, 245, 0.4);
 }
 
-/*
-  Global element resets and typography. Keep margins consistent and ensure
-  colours contrast well against the dark background.
-*/
+/* Reset margins and set base typography */
 html,
 body {
   margin: 0;
@@ -44,13 +48,10 @@ body {
   min-height: 100%;
 }
 
-/*
-  Full‑page background: reuse the hero image so the horse and glowing
-  particles extend across the entire viewport. The image is fixed so it
-  doesn’t scroll with content, and a slight blur and brightness filter
-  soften it for legibility. On very small devices the blur increases to
-  prevent visual clutter.
-*/
+/* Full‑page background: display the hero artwork across the viewport.
+   Brightness and saturation are increased slightly so the horse and
+   particles remain visible even under the dark overlay. A light blur
+   softens the texture without obscuring details. */
 body::before {
   content: '';
   position: fixed;
@@ -59,22 +60,19 @@ body::before {
   width: 100vw;
   height: 100vh;
   background: var(--hero-image) center/cover no-repeat;
-  filter: brightness(0.6) saturate(1.1) blur(1.5px);
-  z-index: -3;
+  filter: brightness(0.8) contrast(1.05) saturate(1.2) blur(0.8px);
+  z-index: -4;
 }
 
 @media (max-width: 768px) {
   body::before {
-    filter: brightness(0.55) saturate(1.2) blur(2px);
+    filter: brightness(0.75) contrast(1.05) saturate(1.2) blur(1.2px);
   }
 }
 
-/*
-  Dark overlay directly on top of the hero image. This gradient ensures
-  text and UI elements remain readable by gradually increasing opacity
-  toward the bottom of the viewport. The overlay scrolls with the page so
-  that it doesn’t feel detached from the content.
-*/
+/* Dark overlay over the background: improves legibility of text by
+   darkening the page from top to bottom. This overlay scrolls with
+   content so it does not feel detached. */
 body::after {
   content: '';
   position: fixed;
@@ -82,18 +80,16 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(6, 16, 24, 0.3) 0%, rgba(6, 16, 24, 0.8) 100%);
+  background: linear-gradient(to bottom, rgba(6, 16, 24, 0.15) 0%, rgba(6, 16, 24, 0.7) 100%);
   pointer-events: none;
-  z-index: -2;
+  z-index: -3;
 }
 
-/*
-  Animated fireflies/star field. A collection of radial gradients are
-  positioned randomly across the viewport. Animations add gentle opacity
-  pulsing and slow drifting. Increasing drop‑shadow size emphasises the
-  glow without generating heavy paint work in browsers.
-*/
-html::before, html::after {
+/* Animated star field: two layers of cool white/blue stars with
+   different sizes and opacities. Slow drift animation makes them
+   gently move upwards. */
+html::before,
+html::after {
   content: '';
   position: fixed;
   top: 0;
@@ -101,67 +97,60 @@ html::before, html::after {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: -1;
+  z-index: -2;
   animation: starsDrift linear infinite;
 }
 
 html::before {
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(255, 218, 109, 0.9) 0%, rgba(255, 218, 109, 0) 60%),
-    radial-gradient(circle at 80% 20%, rgba(255, 243, 199, 0.8) 0%, rgba(255, 243, 199, 0) 65%),
-    radial-gradient(circle at 50% 80%, rgba(255, 218, 150, 0.7) 0%, rgba(255, 218, 150, 0) 70%),
-    radial-gradient(circle at 30% 60%, rgba(255, 236, 187, 0.6) 0%, rgba(255, 236, 187, 0) 75%),
-    radial-gradient(circle at 70% 75%, rgba(255, 224, 150, 0.5) 0%, rgba(255, 224, 150, 0) 80%);
+    radial-gradient(circle at 15% 25%, var(--star1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 20%, var(--star2) 0%, transparent 55%),
+    radial-gradient(circle at 45% 75%, var(--star3) 0%, transparent 60%),
+    radial-gradient(circle at 25% 60%, var(--star2) 0%, transparent 65%),
+    radial-gradient(circle at 80% 70%, var(--star4) 0%, transparent 70%),
+    radial-gradient(circle at 35% 40%, var(--star3) 0%, transparent 65%);
   background-size: 800% 800%;
-  filter: drop-shadow(0 0 20px rgba(255, 236, 187, 0.6));
-  animation-duration: 60s;
+  filter: drop-shadow(0 0 15px var(--star1));
+  animation-duration: 90s;
 }
 
 html::after {
   background-image:
-    radial-gradient(circle at 10% 90%, rgba(255, 236, 187, 0.6) 0%, rgba(255, 236, 187, 0) 50%),
-    radial-gradient(circle at 90% 70%, rgba(255, 236, 187, 0.5) 0%, rgba(255, 236, 187, 0) 55%),
-    radial-gradient(circle at 40% 20%, rgba(255, 236, 187, 0.4) 0%, rgba(255, 236, 187, 0) 60%),
-    radial-gradient(circle at 60% 50%, rgba(255, 236, 187, 0.3) 0%, rgba(255, 236, 187, 0) 65%),
-    radial-gradient(circle at 25% 40%, rgba(255, 236, 187, 0.2) 0%, rgba(255, 236, 187, 0) 70%);
+    radial-gradient(circle at 10% 85%, var(--star3) 0%, transparent 55%),
+    radial-gradient(circle at 90% 65%, var(--star2) 0%, transparent 60%),
+    radial-gradient(circle at 50% 15%, var(--star4) 0%, transparent 65%),
+    radial-gradient(circle at 60% 50%, var(--star3) 0%, transparent 60%),
+    radial-gradient(circle at 30% 35%, var(--star4) 0%, transparent 70%),
+    radial-gradient(circle at 75% 45%, var(--star2) 0%, transparent 65%);
   background-size: 1200% 1200%;
-  filter: drop-shadow(0 0 15px rgba(255, 236, 187, 0.4));
-  animation-duration: 90s;
+  filter: drop-shadow(0 0 10px var(--star2));
+  animation-duration: 120s;
 }
 
 @keyframes starsDrift {
   from { transform: translateY(0); }
-  to   { transform: translateY(-5%); }
+  to   { transform: translateY(-4%); }
 }
 
-/*
-  Simplified header: remove the hero image from the header so it no longer
-  duplicates the horse. A subtle gradient darkens the top of the page
-  while still allowing the underlying background to be visible through
-  transparency. The backdrop filter adds a hint of blur to separate the
-  navigation bar from the content behind it.
-*/
+/* Header styling: remove the hero image duplication, but add a
+   translucent gradient and backdrop blur. A subtle border at the
+   bottom helps delineate the header from the content. */
 header {
-  background-image: none !important;
-  background: linear-gradient(to bottom, rgba(6, 16, 24, 0.9) 0%, rgba(6, 16, 24, 0.7) 100%);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(to bottom, rgba(6, 16, 24, 0.8) 0%, rgba(6, 16, 24, 0.6) 100%);
+  backdrop-filter: blur(5px) brightness(1.0);
+  -webkit-backdrop-filter: blur(5px) brightness(1.0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/*
-  Headings and text within the header need a drop shadow to stand out
-  against the semi‑transparent header background.
-*/
-header h1, header h2, header p {
+header h1,
+header h2,
+header p {
+  margin: 0;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-/*
-  Content cards: dark translucent backgrounds with rounded corners and a
-  mild backdrop blur. Padding and margin create breathing room. Cards
-  expand and stack vertically on smaller screens for better readability.
-*/
+/* Content container: glassy cards with blur and transparency. */
 .content-section {
   margin: 3rem auto;
   width: min(90%, 60rem);
@@ -180,12 +169,9 @@ header h1, header h2, header p {
   }
 }
 
-/*
-  Buttons: Use accent colour with subtle hover states. On dark
-  backgrounds the buttons stand out and are easy to tap on mobile
-  devices. Border radius and padding ensure they are finger friendly.
-*/
-button, .btn {
+/* Buttons styling: accent coloured buttons with hover states */
+button,
+.btn {
   background: var(--accent);
   color: #ffffff;
   border: none;
@@ -196,19 +182,16 @@ button, .btn {
   transition: background 0.2s ease;
 }
 
-button:hover, .btn:hover {
+button:hover,
+.btn:hover {
   background: #1f8d55;
 }
 
-/*
-  Navigation bar: dark translucent background consistent with the header
-  overlay. Use backdrop blur to differentiate from the underlying
-  background. Highlight the active link with the accent colour.
-*/
+/* Navigation bar: match the header style and highlight active links */
 nav {
-  background: rgba(6, 16, 24, 0.8);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background: rgba(6, 16, 24, 0.85);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   padding: 0.5rem 1rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -224,25 +207,19 @@ nav a.active {
   color: var(--accent);
 }
 
-/*
-  Footer: align with the dark theme and avoid heavy drop shadows. Slight
-  opacity allows the background to show through.
-*/
+/* Footer styling: dark translucent background with subtle border */
 footer {
   padding: 2rem 1rem;
   text-align: center;
   font-size: 0.875rem;
   color: var(--text-secondary);
   background: rgba(6, 16, 24, 0.85);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/*
-  Ensure images scale properly and don’t exceed their containers. Remove
-  max‑width restrictions if images need to fill their space.
-*/
+/* Ensure images within content scale properly */
 img {
   max-width: 100%;
   height: auto;
